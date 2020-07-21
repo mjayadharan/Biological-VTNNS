@@ -1,0 +1,10 @@
+program testing
+
+  implicit none
+real:: random
+call rand(random)
+
+write(*,*) random
+
+
+end program testing

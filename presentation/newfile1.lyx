@@ -1,0 +1,2054 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass beamer
+\begin_preamble
+\usetheme{Warsaw}
+% or ...
+
+\setbeamercovered{transparent}
+% or whatever (possibly just delete it)
+\end_preamble
+\use_default_options false
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman times
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 2
+\use_package amssymb 2
+\use_package cancel 0
+\use_package esint 0
+\use_package mathdots 1
+\use_package mathtools 0
+\use_package mhchem 1
+\use_package stackrel 0
+\use_package stmaryrd 0
+\use_package undertilde 0
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 2
+\tocdepth 2
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+This file is a solution template for:
+\end_layout
+
+\begin_layout Itemize
+Talk at a conference/colloquium.
+ 
+\end_layout
+
+\begin_layout Itemize
+Talk length is about 20min.
+ 
+\end_layout
+
+\begin_layout Itemize
+Style is ornate.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+Copyright 2004 by Till Tantau <tantau@users.sourceforge.net>.
+ 
+\end_layout
+
+\begin_layout Plain Layout
+In principle, this file can be redistributed and/or modified under the terms
+ of the GNU Public License, version 2.
+ However, this file is supposed to be a template to be modified for your
+ own needs.
+ For this reason, if you use this file as a template and not specifically
+ distribute it as part of a another package/program, the author grants the
+ extra permission to freely copy and modify this file as you see fit and
+ even to delete this copyright notice.
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Title
+Neural Signal Processing
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+Neural Signal Processing
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+optional, use only with long paper titles
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Author
+Manu.Jayadharan 
+\end_layout
+
+\begin_layout Institute
+\begin_inset Flex InstituteMark
+status collapsed
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+Department of Mathematics
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Flex InstituteMark
+status collapsed
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+IISER Mohali
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Date
+NNMCB Internship 2015 Progress
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+If you have a file called "institution-logo-filename.xxx", where xxx is a
+ graphic format that can be processed by latex or pdflatex, resp., then you
+ can add a logo by uncommenting the following:
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+%
+\backslash
+pgfdeclareimage[height=0.5cm]{institution-logo}{institution-logo-filename}
+\end_layout
+
+\begin_layout Plain Layout
+
+%
+\backslash
+logo{
+\backslash
+pgfuseimage{institution-logo}}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+The following causes the table of contents to be shown at the beginning
+ of every subsection.
+ Delete this, if you do not want it.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+AtBeginSubsection[]{%
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+frame<beamer>{ 
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+frametitle{Outline}   
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+tableofcontents[currentsection,currentsubsection] 
+\end_layout
+
+\begin_layout Plain Layout
+
+  }
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+If you wish to uncover everything in a step-wise fashion, uncomment the
+ following command:
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+%
+\backslash
+beamerdefaultoverlayspecification{<+->}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Outline
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Structuring a talk is a difficult task and the following structure may not
+ be suitable.
+ Here are some rules that apply for this solution: 
+\end_layout
+
+\begin_layout Itemize
+Exactly two or three sections (other than the summary).
+ 
+\end_layout
+
+\begin_layout Itemize
+At *most* three subsections per section.
+ 
+\end_layout
+
+\begin_layout Itemize
+Talk about 30s to 2min per frame.
+ So there should be between about 15 and 30 frames, all told.
+\end_layout
+
+\begin_layout Itemize
+A conference audience is likely to know very little of what you are going
+ to talk about.
+ So *simplify*! 
+\end_layout
+
+\begin_layout Itemize
+In a 20min talk, getting the main ideas across is hard enough.
+ Leave out details, even if it means being less precise than you think necessary.
+ 
+\end_layout
+
+\begin_layout Itemize
+If you omit details that are vital to the proof/implementation, just say
+ so once.
+ Everybody will be happy with that.
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Section
+Motivation
+\end_layout
+
+\begin_layout Subsection
+What is neural Signal Processing
+\end_layout
+
+\begin_layout Frame
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Neurons can be can be considered as the most fundamental and core unit of
+ the nervous system
+\end_layout
+
+\begin_layout Itemize
+They are electrically excitable cells which helps in the propogation of
+ information through electrical and chemical interactions within an organism
+\end_layout
+
+\begin_layout Itemize
+Neurons can be sensory, motor or interconnecting
+\end_layout
+
+\begin_layout Itemize
+Neurons interconnect to form neural network
+\end_layout
+
+\begin_layout Itemize
+The sole purpose of neural signal processing is to understand how information
+ is represented, transmitted and stored in the nervous system and develop
+ the mechanism to record and interpret these signals
+\end_layout
+
+\end_deeper
+\begin_layout Subsection
+Brain and Neuron Structure
+\end_layout
+
+\begin_layout Frame
+Humman brain consists of approximately 10 billion neurons
+\begin_inset Graphics
+	filename /media/wickedboy2/A2263AD2263AA767/assign gone(the new one)/internship for NNMCB/presentation/requirements/images.jpg
+	scale 50
+	rotateOrigin centerBottom
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Separator
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Structure of Neuron
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Graphics
+	filename /media/wickedboy2/A2263AD2263AA767/assign gone(the new one)/internship for NNMCB/presentation/requirements/neuron_structure.jpg
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Subsection
+Membrane Potential and Action Potential
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Membrane Potential
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Neurons usually maintain a difference in electric potential across its cell
+ membrane
+\end_layout
+
+\begin_layout Itemize
+Unequal distribution of charged ions(Na+,K+,Ca2+, cl- etc) accounts for
+ this membrane potential difference
+\end_layout
+
+\begin_layout Itemize
+Cell membrane has selectively permeable ion channels which facilitates the
+ movement of corrensponding ions
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+V_{m}=V_{in}-V_{out}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Separator
+
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Action Potential
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+signals are processed across an excitable neuron in the form of propogating
+ spikes or action potential.
+\end_layout
+
+\begin_layout Itemize
+A slight decrease in membrane potential makes membrane more permeable to
+ Na+ than K+, and a positive feedback loop facilitates further depolarization
+ to form a sharp peak in the voltage across the membrane.
+\end_layout
+
+\begin_layout Itemize
+Action potential is an all or nothing event.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Graphics
+	filename /media/wickedboy2/A2263AD2263AA767/assign gone(the new one)/internship for NNMCB/presentation/requirements/action_potential.jpg
+	scale 30
+	rotateOrigin rightBottom
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Section
+Hodgkin Huxley Model
+\end_layout
+
+\begin_layout Subsection
+About the model
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+H & H model 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+The Hodgkin-Huxley Model is a mathematical model for the initiation and
+ propogation of action potential across a neurons based on the dynamic behaviour
+ of the conductance of different ions across the membrane
+\end_layout
+
+\begin_layout Itemize
+It is a set of differential equations which is mostly derived from emperical
+ data from different set of Voltage clamp experiments conducted on squid
+ giant axon.
+\end_layout
+
+\begin_layout Itemize
+Alan Lloyd Hodgkin and Andrew Huxley received the Nobel Prize in phhysiology
+ or Medicine for the same
+\end_layout
+
+\end_deeper
+\begin_layout Frame
+
+\end_layout
+
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Differential Equations 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Graphics
+	filename /media/wickedboy2/A2263AD2263AA767/assign gone(the new one)/internship for NNMCB/presentation/pasted1.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Modelling of gating variables
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Graphics
+	filename /media/wickedboy2/A2263AD2263AA767/assign gone(the new one)/internship for NNMCB/presentation/pasted2.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Subsection
+Simulation of the Model
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Simulation softwares and strategies
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Lot of open sourced and commercial advanced softwares are available for
+ the simulation and visualisation of the Model none of which is being being
+ for my simulations
+\end_layout
+
+\begin_layout Itemize
+All codes are written using Fortran95 and all the packages and modules are
+ self written.
+\end_layout
+
+\begin_layout Itemize
+Simple Euler method is invoked for solving the set of coupled differential
+ equations which is later improved using runge-kutta of order 4
+\end_layout
+
+\begin_layout Itemize
+Facility for making an animation of plotting of the simulated data is incorporat
+d into the code with the help of gnu plot and ffmpeg.
+\end_layout
+
+\begin_layout Itemize
+The complete code and animations are available at https://www.dropbox.com/sh/7bd3h
+ueoui1kcfq/AAB2iR21nXP1owC
+\begin_inset Newline newline
+\end_inset
+
+tnhOmUf65a?dl=0
+\end_layout
+
+\begin_layout Separator
+
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Simulation with current 0 and 4mA resp
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Graphics
+	filename /home/wickedboy2/Dropbox/internship for NNMCB/simulations/hh neuron mode/s_videos/current=0.png
+	scale 35
+	rotateOrigin leftTop
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename /home/wickedboy2/Dropbox/internship for NNMCB/simulations/hh neuron mode/s_videos/currnet=4.0.png
+	scale 35
+	rotateOrigin rightTop
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Simulation with current 50mA and 100mA resp
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Frame
+\begin_inset Graphics
+	filename /home/wickedboy2/Dropbox/internship for NNMCB/simulations/hh neuron mode/s_videos/current=50.png
+	scale 35
+	rotateOrigin leftTop
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename /home/wickedboy2/Dropbox/internship for NNMCB/simulations/hh neuron mode/s_videos/current=100.png
+	scale 35
+	rotateOrigin rightTop
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Neuron Coupling
+\end_layout
+
+\begin_layout Subsection
+LIF(leaky integrate and fire) model
+\end_layout
+
+\begin_layout Frame
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+LIF model is a comparitively simple model in which the ionic conductances
+ are not explicitley incorporated
+\end_layout
+
+\begin_layout Itemize
+It is based on a simple RC circuit
+\end_layout
+
+\begin_layout Itemize
+instead of modelling the spikes internally, in this model the spikes are
+ artificially introduced when the membrane potential reaches a threshold
+ votlage 
+\begin_inset Formula $V_{th}$
+\end_inset
+
+ and resetting 
+\begin_inset Formula $V_{m}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+The basic equation of an LIF model can be given by 
+\begin_inset Graphics
+	filename /media/wickedboy2/A2263AD2263AA767/assign gone(the new one)/internship for NNMCB/presentation/pasted6.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Separator
+
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Modelling the coupling
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+The coupling between two neurons is modelled by incorporating an ohmic conductan
+ce between two neurons into the LIF model to get the following set of differenti
+al equations 
+\begin_inset Graphics
+	filename /media/wickedboy2/A2263AD2263AA767/assign gone(the new one)/internship for NNMCB/presentation/pasted5.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+A completely analytic solution for this set of equations can be done with
+ the reduction of order using theory of weakly coupled oscillators.
+\end_layout
+
+\begin_layout Separator
+
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Subsection
+Simulations
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Software used for Simulation
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+While analytic solution can be derived, numerical solution can be derived
+ from the coupled differential equations to get an insight of the problem.
+\end_layout
+
+\begin_layout Itemize
+Again all codes are written using Fortran95 and all the packages and modules
+ are self written.
+\end_layout
+
+\begin_layout Itemize
+Runge-kutta of order 4 is invoked for solving the set of coupled differential
+ equations.
+\end_layout
+
+\begin_layout Itemize
+Facility for making an animation of plotting of the simulated data is incorporat
+d into the code with the help of gnu plot and ffmpeg.
+\end_layout
+
+\begin_layout Itemize
+The complete code and animations are available at https://www.dropbox.com/sh/qs4f3
+on3oo1fcvz/AAAu5XrPb
+\begin_inset Newline newline
+\end_inset
+
+o_nFdw3pGyEBUDea?dl=0
+\end_layout
+
+\begin_layout Separator
+
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Simulations with weak and Strong applied current
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Graphics
+	filename /home/wickedboy2/Dropbox/internship for NNMCB/simulations/neuron coupling/I = 1.12
+	scale 35
+	rotateOrigin leftTop
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename /home/wickedboy2/Dropbox/internship for NNMCB/simulations/neuron coupling/I = 2.0
+	scale 35
+	rotateOrigin rightBottom
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Section
+Variable Topology Neural Network Simulator
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Neural Network
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+The complexity of Neural Networks arises not from the specialisation of
+ neurons, but from their topology and nature of interconnection.
+\end_layout
+
+\begin_layout Itemize
+Understanding how the topology of neural network affect signal propogation
+ seems to be a very interesting filed of study as it might give some insight
+ into how the same kind of action potential can be used to propogate complex
+ iformation from the brain.
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+Mathematical Modelling
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Variable Topology Neural Network Simulator(VTNNS) is a simulator which is
+ based on a Mathematical model that can simulate or mimic the behaviour
+ of signal propogation in a neural network with any specified topology and
+ synaptic relation.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\tau\frac{dV}{dt}=-(V-V_{0})
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\tau\frac{dV}{dt}=-(V-V_{0})-g^{+}(t)(V-E^{+})-g^{-}(t)(V-E^{-})
+\end{equation}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+\tau_{s}\frac{dg^{i}}{dt}=-g^{i}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Solution of the Equation
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Formula 
+\[
+V(t)=-\rho(1-\tau_{s},\tau_{s}g(t))\tau_{s}E_{s}g(t)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Frame
+\begin_inset Formula 
+\[
++exp(\tau_{s}(g(t)-g(0))-t)(V(0)+\rho(1-\tau_{s},\tau_{s}g(0))\tau_{s}E_{s}g(0)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+where, 
+\begin_inset Formula $\rho(a,b)=e^{b}x^{-a}\gamma(a,b)$
+\end_inset
+
+ with 
+\begin_inset Formula $\gamma(a,b)=\int_{0}^{b}e^{-t}t^{a-1}dt$
+\end_inset
+
+ which is the incompete gamma integral.
+\end_layout
+
+\begin_layout Itemize
+Fast computing numerical libraries are available for efficient calculation
+ of the incomplete gamma integrals.
+\end_layout
+
+\end_deeper
+\begin_layout Frame
+
+\end_layout
+
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+VTNNS without time delay
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Enumerate
+Maintain a sorted table of firing time of various neurons in the network.
+\end_layout
+
+\begin_layout Enumerate
+Updating the neuron after it fires: If a neuron is to be first at time 
+\begin_inset Formula $t$
+\end_inset
+
+ and if 
+\begin_inset Formula $t_{0}$
+\end_inset
+
+is the last time of update of the neuron, 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $V\to V_{reset}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $g\to g*exp(\frac{-(t-t_{0})}{\tau_{s}})$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Updating neuron 
+\begin_inset Formula $j$
+\end_inset
+
+ after 
+\begin_inset Formula $i$
+\end_inset
+
+ neuron fires: If a neuron fires at time 
+\begin_inset Formula $t$
+\end_inset
+
+, then for each other neuron with last update time 
+\begin_inset Formula $t_{0}$
+\end_inset
+
+,
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $V\to V(t-t_{0})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $g\to g*exp(\frac{-(t-t_{0})}{\tau_{s}})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $E_{s}\to\frac{gE_{S}+pw_{ij}+q|w_{ij}|}{g+|w_{ij}|}$
+\end_inset
+
+ where 
+\begin_inset Formula $p=\frac{E^{+}-E^{-}}{2}$
+\end_inset
+
+and 
+\begin_inset Formula $q=E^{+}+E^{-}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $g\to g+|w_{ij}|$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Update the firing time table of neurons
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+VTNNS with time delay
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Enumerate
+Maintain a sorted table of firing time of various neurons in the network.
+\end_layout
+
+\begin_layout Enumerate
+Updating the neuron after it fires: If a neuron is to be first at time 
+\begin_inset Formula $t$
+\end_inset
+
+ and if 
+\begin_inset Formula $t_{0}$
+\end_inset
+
+is the last time of update of the neuron, 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $V\to V_{reset}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $g\to g*exp(\frac{-(t-t_{0})}{\tau_{s}})$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Updating neuron 
+\begin_inset Formula $j$
+\end_inset
+
+ after 
+\begin_inset Formula $i$
+\end_inset
+
+ neuron fires: If a neuron fires at time 
+\begin_inset Formula $t$
+\end_inset
+
+, then for each other neuron with last update time 
+\begin_inset Formula $t_{0}$
+\end_inset
+
+,
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $V\to V(t-t_{0})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $g\to g*exp(\frac{-(t-t_{0})}{\tau_{s}})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $E_{s}\to\frac{gE_{S}+pw_{ij}+q|w_{ij}|}{g+|w_{ij}|}$
+\end_inset
+
+ where 
+\begin_inset Formula $p=\frac{E^{+}-E^{-}}{2}$
+\end_inset
+
+and 
+\begin_inset Formula $q=\frac{E^{+}+E^{-}}{2}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $g\to g+|w_{ij}|$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Update the firing time table of neurons
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Spike tests
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Enumerate
+Check 
+\begin_inset Formula $E_{s}>V_{t}$
+\end_inset
+
+, if yes then
+\end_layout
+
+\begin_layout Enumerate
+Check 
+\begin_inset Formula $g_{0}>g_{min}$
+\end_inset
+
+, if yes then
+\end_layout
+
+\begin_layout Enumerate
+Check 
+\begin_inset Formula $V(g_{min})>V_{th}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+Neuron will fire iff the initial conditions passes all the three spike tests
+ above
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Coding for VTNNS
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Simulator with and without time lag in synaptic conductance is coded separatley
+ .
+ We have used the algorithms to make two VTNNS setup: one in which the synaptic
+ interaction is very strong and a few neurons can be set to fire once and
+ check the propogation of the signal in the network, the second in which
+ one of the neurons in the network act as an oscilattor(source of signal)
+ with a specified frequency
+\end_layout
+
+\begin_layout Itemize
+All codes are written in 
+\begin_inset Formula $Fortran95$
+\end_inset
+
+ considering the efficiency of the same to handle huge arrays and comutational
+ efficiency while doing huge calculations.
+ This give us an advantage to simulate large network within feasible computation
+ time.
+ Disadvantage being the difficulty in debugging and the code getting lengthy.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://www.dropbox.com/sh/bkju25ktl9jip29/AABDjSxazoR0TcBQp13Xizema?dl=0
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Star Topology
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /home/wickedboy2/Dropbox/internship for NNMCB/report/star.jpg
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+star topology
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /home/wickedboy2/Dropbox/internship for NNMCB/simulations/neural transmission/star topology and variants simulations/A1: without time lag_same weight=1.2
+	scale 35
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename /home/wickedboy2/Dropbox/internship for NNMCB/simulations/neural transmission/star topology and variants simulations/A2: with time lag of 0.001 weight=1.2
+	scale 35
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /home/wickedboy2/Dropbox/internship for NNMCB/simulations/neural transmission/star topology and variants simulations/A2: with time lag of 0.001 weight=1.2 and 1.6
+	scale 35
+	rotateOrigin leftBottom
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename /home/wickedboy2/Dropbox/internship for NNMCB/simulations/neural transmission/star topology and variants simulations/B1: without time lag  weight =0.2
+	scale 35
+	rotateOrigin rightBottom
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Raster plot for neural network with star topology simulated using VTNNS
+ without time delay in propogation of spike(top left) and with time delay(top
+ right).
+ 
+\begin_inset Formula $w_{1j}=1.2$
+\end_inset
+
+(neuron 1 is connected to all other neurons with an excitory sypansis) ..
+ Image on bottom left shows the same simulation with parameter 
+\begin_inset Formula $w_{1j}$
+\end_inset
+
+ increased to 
+\begin_inset Formula $1.6$
+\end_inset
+
+ for neurons 
+\begin_inset Formula $25$
+\end_inset
+
+ to 
+\begin_inset Formula $50$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Fully connected Topology
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /home/wickedboy2/Dropbox/internship for NNMCB/report/fully connected.jpg
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+fully connected topology
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /home/wickedboy2/Dropbox/internship for NNMCB/simulations/neural transmission/star topology and variants simulations/fully connected without timelag
+	scale 35
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename /home/wickedboy2/Dropbox/internship for NNMCB/simulations/neural transmission/star topology and variants simulations/fully connected with time lag
+	scale 35
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Raster plot for neural network with fully connected topology simulated using
+ VTNNS without time delay in propogation of spike(top left) and with time
+ delay(top right).
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Ring Topology
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /home/wickedboy2/Dropbox/internship for NNMCB/report/2012-01-11-cypress-figure-1.jpg
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+ring topology
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /home/wickedboy2/Dropbox/internship for NNMCB/simulations/neural transmission/ring toplogy and variants simulations/B2
+	scale 35
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename /home/wickedboy2/Dropbox/internship for NNMCB/simulations/neural transmission/ring toplogy and variants simulations/B3
+	scale 35
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Raster plot for neural network with ring topology simulated using VTNNS
+ without time delay in propogation of spike(left) and with time delay(right).
+ 
+\begin_inset Formula $w_{i,i+1}=1.0$
+\end_inset
+
+ for 
+\begin_inset Formula $i=1,..,9$
+\end_inset
+
+ and 
+\begin_inset Formula $w_{10,1}=1.0$
+\end_inset
+
+(each neuron is connected to the next neuron in the order in a circle with
+ an excitory sypansis) 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Miscellaneous
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /home/wickedboy2/Dropbox/internship for NNMCB/simulations/neural transmission/ring toplogy and variants simulations/B5
+	scale 35
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename /home/wickedboy2/Dropbox/internship for NNMCB/simulations/neural transmission/ring toplogy and variants simulations/B6
+	scale 35
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+A wheel spoke kind of toplogy is considered by joining the peripheral neurons
+ in a star shaped Neural netowork using inhibitory synapse.Raster plot of
+ the same is simulated using VTNNS without time delay in propogation of
+ spike( left) and with time delay(right).
+ 
+\begin_inset Formula $w_{1j}=1.0$
+\end_inset
+
+(neuron 1 is connected to all other neurons with an excitory sypansis) and
+ 
+\begin_inset Formula $w_{i,i+1}=-1.0$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Random Network
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+VTNNS can be easily used to make a random network containing large number
+ of neurons.
+ 
+\end_layout
+
+\begin_layout Itemize
+Probabilistic distributions and functions could be used to define the synaptic
+ relatin between these neurons and also spiking could also be introduced
+ at various nodes following some particular distribution.
+\end_layout
+
+\end_deeper
+\begin_layout Frame
+
+\end_layout
+
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Improving the VTNNS
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Various kinds of synapstic transmitters can be incorporated in the model
+ using multidimensional arrays for the weight matrix explaining synaptic
+ relations.
+\end_layout
+
+\begin_layout Itemize
+Synaptic relation between neurons in the network can be made to evolve with
+ time which can be done by using functions to change entries of the weight
+ matrix considering the current state of a neuron and the nature of the
+ incomign spikes.
+ This needs further work, proper experiments might be needed to fit functions
+ which actually mimics the behaviour of the neural transmitters and their
+ binding to various receptors in the synaptic junction.
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout PlainFrame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Each neuron or different section of neurons in the network can be assigned
+ different synaptic time constants which again requires experiments to get
+ an idea of how these values should be assigned to make it useful.
+\end_layout
+
+\begin_layout Itemize
+A more probabilistic model can be used to model VTNNS in which case the
+ whole algorithm need to be rewritten.
+\end_layout
+
+\begin_layout Itemize
+I case of using VTNSS for some studies, various graphical interfaces can
+ be used so that VTNNS will automatically generate an image of the toplogy
+ that it is being simulated and also an animation which gives a clear view
+ on how the neurons are behaving inside the simulated network.
+\end_layout
+
+\end_deeper
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-1"
+
+\end_inset
+
+The Effects of Potassium Currents on the Synchronization of Electrically
+ Coupled Neural Oscillators By Colin Baker Middleton 
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-2"
+
+\end_inset
+
+Exact Simulation of Integrate-and-Fire Models with Synaptic Conductances,
+ Romain Brette 
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-3"
+
+\end_inset
+
+Lecture presentations of Dr.Caleb Kemere, Rice university
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-5"
+
+\end_inset
+
+Lecture notes on Hodgkin Huxley model by Dr.Stephen coombes, university of
+ Nottingham
+\end_layout
+
+\begin_layout Subsubsection*
+\start_of_appendix
+
+\end_layout
+
+\end_body
+\end_document

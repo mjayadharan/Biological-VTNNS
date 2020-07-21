@@ -1,0 +1,20 @@
+module numerical
+  !has some most commonly used numerical methods for differentiation and root finidng
+  implicit none
+
+
+
+contains
+  function diff_5(func, ar_of_arg,no,h)
+    !func-funciton,ar_of_arg- array of argument with last value being the variable wrt diff
+    ! no- no.of arguments , h-nbd radius
+    integer , parameter:: dp= kind(1.d0)
+    real(kind=dp):: func,h
+    integer :: no
+    real :: ar_of_arg(no)
+
+
+  end function diff_5
+
+
+end module numerical

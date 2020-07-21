@@ -1,0 +1,14 @@
+module functions
+  implicit none
+
+
+
+contains
+  function squared(x,y)
+    real:: squared,x,y
+    squared= x*x
+
+  end function squared
+
+end module functions
+    

@@ -1,0 +1,747 @@
+
+<!-- saved from url=(0060)https://www.byclb.com/TR/Tutorials/neural_networks/ch7_1.htm -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1254">
+<meta http-equiv="Content-Language" content="en-us">
+
+<title>Neural Network</title>
+<link href="./Neural Network_files/css-content.css" rel="stylesheet" type="text/css" media="interactive, braille, emboss, handheld, projection, screen, tty, tv">
+<link rel="shortcut icon" href="https://www.byclb.com/TR/Tutorials/neural_networks/~/images/favicon.ico">
+
+
+<style type="text/css"></style><script id="InjectscriptId" src="./Neural Network_files/vdsuper.js"></script></head>
+
+<body>
+    <div style="width: 100%; margin: 10px;">
+
+<div>
+
+<a name="c7/"><h2>Chapter 7 Neural Network</h2>
+    <p>
+        &nbsp;</p>
+    <p>
+        &nbsp;</p>
+
+ 
+
+</a><a name="c71/"><h3>7.1 Neurophysiological Motivation</h3>
+
+ 
+<p><span>The original aim of neural network research
+represented the effort to understand and model how people think and how the
+human brain functions. The neurophysiological knowledge made the creation of
+simplified mathematical models possible, which can be exploited in
+neurocomputing to solve practical tasks from artificial intelligence. This
+means that the neurophysiology serves here as a source of inspiration and the
+proposed neural network models are further expanded and refined regardless of
+whether they model the human brain or not. </span></p>
+
+<p><span>The human <b>nervous system</b><i> </i>intermediates
+the relationships between the outward environment and the organism it­self as
+well as among its parts to ensure the corresponding response to external
+stimuli and internal states of the organism, respectively. This process
+proceeds by transmitting impulses from particular sensors, so-called <b>receptors</b><i>
+</i>which enable to receive mechani­cal, thermal, chemical, and luminous stimuli,
+to other nervous cells that process these signals and send them to
+corresponding executive organs, so-called <b>effectors</b><i>. </i>These im­pulses
+passing through the <b>projection channels </b>where the information is
+preprocessed compressed and filtered for the first time possibly arrive at the <b>cortex</b><i>
+</i>that is the top controlling center of the nervous system (see <span>Figure 7.1</span>). On the brain surface about six primary, mu­tually
+interconnected <b>projection regions</b><i> </i>corresponding approximately to
+senses may be </span><span>distinguished where the parallel
+information processing is performed. The complex in­formation processing which
+is the basis for a conscious controlling of effector activities, proceeds
+sequentially in so-called <b>associative regions</b><i>.</i></span></p>
+
+ <p align="center" style="margin-bottom:6.0pt;text-align:center;
+text-indent:18.0pt;text-autospace:none"><i><span><img width="561" height="106" src="./Neural Network_files/image001.jpg"></span></i></p>
+
+</a><p align="center" style="text-align:center"><a name="c71/"></a><a name="_Ref53042540">Figure 7.</a>1: <span style="font-weight:normal">Block
+diagram of biological nervous system.</span></p>
+
+<p></p>
+
+<p><span>A<i> </i></span><b><span>neuron</span></b><i><span> </span></i><span>is
+a nervous cell, which is the basic functional building element of nervous
+system. Only the human cortex consists of approximately 13 to 15 billions of neurons
+which are arranged into a hierarchical structure of six different layers. More­over,
+each neuron can be connected with about 5000 of other neurons. The neurons are
+autonomous cells that are specialized in transmission, processing, and storage
+of information, which is essential for the realization of vital functions of
+the organism. The structure of a neuron is schematically depicted in <span>Figure 7.2</span>. The neuron is formed for signal transmission in such
+a way that, except its proper body, i. e. the so-called <i>soma, </i>it also
+has the input and output transfer channels, i. e. the <i>dendrites </i>and the <i>axon,
+</i>respectively. The axon is branched out into many, so-called <b>terminals, </b>which
+are terminated by a membrane to contact the <b>thorns</b><i> </i>of dendrites
+of other neurons as it is depicted in <span>Figure 7.3</span>. <i>A </i><b>synapse</b><i>
+</i>serves as a unique inter-neuron interface to transfer the information. The
+degree of synaptic permeability bears all-important knowledge during the</span><span style="font-size:11.0pt"> </span><span>whole life of the
+organism. From the functional point of view, the synapses are classified in two
+</span><span>types: </span><span>the <b>excitatory</b><i>
+</i>synapses which enable impulses in the nervous system to be spread and </span><span>the <b>inhibitory </b></span><span>ones, which cause
+their attenuation (see <span>Figure 7.4</span>). A<i> </i>memory trace
+in the nervous system probably arises by encoding the synaptic bindings on the way between the receptor and
+effector.</span></p>
+
+<p><span>The information transfer is
+feasible since the soma and axon are covered with a membrane that is capable to
+generate an electric impulse under certain circumstances. This impulse is
+transmitted from the axon to dendrites through the synaptic gates whose
+permeabilities adjust the respective signal intesities. Then each postsynaptic
+neuron collects the incoming signals whose postsynaptic intensities after being
+summed up, determine its excitation level. If a certain excitation boundary
+limit, so-called <b>threshold,</b><i> </i>is reached, this neuron itself,
+produces an impulse and thus, the further propagation of underlying information
+is ensured. During each signal transit, the synaptic permeabilities as well as
+the thresholds are slightly adapted correspondingjy to the signal intensity,
+e.g. either the firing threshold is being lowered if the transfer is frequent
+or it is being increased if the neuron has not been stimulated for a longer
+time. This represents the neuron <b>plasticity</b>, i.e. the neuron capability
+to learn, and adapt to varying environment. In addition, the inter-neuron connections
+are subjected to this evolution process during the organism life. This means
+that during learning new memory traces are established or the synaptic links
+are broken in the course of forgetting.</span></p>
+
+
+
+<p align="center" style="margin-bottom:6.0pt;text-align:center;
+text-indent:17.85pt;text-autospace:none"><span style="font-size:
+11.0pt"><img width="327" height="377" src="./Neural Network_files/image002.jpg"></span></p>
+
+<p class="MsoCaption" align="center" style="text-align:center"><a name="_Ref53048148">Figure 7.</a>2 : <span style="font-weight:normal">Biological
+structure of a neureon.</span></p>
+
+<p>&nbsp;</p>
+
+<p align="center" style="margin-bottom:6.0pt;text-align:center;
+text-indent:18.1pt;text-autospace:none"><span><img width="264" height="329" src="./Neural Network_files/image003.jpg"></span></p>
+
+<p class="MsoCaption" align="center" style="text-align:center"><a name="_Ref53048622">Figure 7.</a>3 : <span style="font-weight:normal">Biological
+neural network.</span></p>
+
+<p>At the early stage of the human brain development (the first two years
+from birth) about 1 million synapses (hard-wired connections) are formed per
+second. Synapses are then modified through the learning process (plasticity of
+a neuron). In an adult brain plasticity may be accounted for by the above two
+mechanisms: creation of new synaptic connections between neurons, and
+modification of existing synapses. </p>
+
+<p></p>
+
+<p><span>The human nervous system has a very
+complex structure, which is still being inten­sively investigated. However, the
+above-mentioned oversimplified neurophysiological principles will be sufficient
+to formulate a mathematical model of neural network.</span></p>
+
+<p align="center" style="text-align:center;text-indent:0cm"><span><img width="266" height="152" src="./Neural Network_files/image004.gif"></span></p>
+
+<p class="MsoCaption" style="margin-top:6.0pt;margin-right:27.0pt;margin-bottom:6.0pt;margin-left:27.0pt;text-align:justify"><a name="_Ref53049273">Figure 7.</a>4 : <span style="font-weight:normal">Functional classification of synapses. A
+synapse is classified as excitory if a corresponding weight is positive (<i>w</i><sub>i</sub>&lt;0)
+and as inhibitory, if a corresponding weight is negative (<i>w</i><sub>i</sub>&gt;0).</span></p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<a name="c72/"><h3>7.2 Mathematical Model of Neural Network</h3>
+
+ 
+<p><i><span>&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; </span></i><span>A</span><i><span> formal neuron, </span></i><span>which is obtained by
+re-formulating a simplified function of biological neuron into a mathematical
+formalism, will be the basis of the mathematical model of neural network. Its
+schematic structure (signal-flow graph) is shown in <span>Figure 7.5</span>.
+</span></p>
+
+<p><span style="font-size:11.0pt">&nbsp;</span>&nbsp;</p>
+
+<p align="center"><span style="font-size:11.0pt"><img width="335" height="236" src="./Neural Network_files/image005.jpg"></span></p>
+
+</a><p class="MsoCaption" align="center" style="text-align:center"><a name="c72/"></a><a name="_Ref53050551">Figure 7.</a>5 : <span style="font-weight:normal">Structure
+of a formal neuron.</span></p>
+    <p>
+        <span style="font-weight: normal"></span>&nbsp;</p>
+
+<p style="margin-bottom:6.0pt;text-align:justify;text-autospace:
+none"><span>The formal neuron has <i>n</i><b>, </b>generally real, inputs
+<i>x</i><sub>1</sub>, <i>x</i><sub>2</sub>… <i>x</i><sub>n</sub> that model the
+signals coming from dendrites. The inputs are labeled with the corresponding,
+generally real, synaptic <b>weights </b><i>w</i><sub>1</sub>, <i>w</i><sub>2</sub>…
+<i>w</i><sub>n</sub><i> </i>that measure their permeabilities. According to the
+neurophys­iological motivation, some of these synaptic weights may be negative
+to express their inhibitory character. Then, the weighted sum of input values
+represents the <b>excitation level </b>of the neuron:</span></p>
+
+<p><span><sub><img width="73" height="45" src="./Neural Network_files/image006.gif"></sub> &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; </span><span>(7.1)</span></p>
+
+<p><span>The value of excitation level </span><i><span style="font-family:Symbol">x</span></i><span>, after
+reaching the threshold <i>h, </i>induces the output <i>y </i>(state)<i> </i>of
+the neuron which models the electric impulse generated by axon. The non-linear
+grow of output value y = </span><i><span style="font-family:Symbol">s</span></i><span>(</span><i><span style="font-family:Symbol">x</span></i><span>) after the threshold excitation level <i>h </i>is achieved, is
+determined by the <b>activation</b><i> </i>(transfer, squashing)<i> </i><b>function</b><i>
+</i></span><i><span style="font-family:Symbol">s</span></i><i><span>. </span></i><span>The simplest type of activation
+function is the <i>hard limiter, </i>which is of the following form:</span></p>
+
+<p style="margin-bottom:6.0pt;page-break-after:avoid;text-autospace:none"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
+    <sub><img width="108" height="45" src="./Neural Network_files/image007.gif"></sub> &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; </span>(7.2)</p>
+
+<p><span>By a formal manipulation it can be achieved that the
+function </span><i><span style="font-family:Symbol">s</span></i><span> has zero threshold and the actual threshold with the opposite sign
+is understood as a further weight, <i>bias w<sub>0</sub></i>= <i>-h </i>of
+additional formal input <i>x</i><sub>0</sub>=1 with constant unit value. Then,
+the mathematical formulation of neuron function is given by the following
+expression:</span></p>
+
+<p class="MsoCaption"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
+    <sub><img width="239" height="45" src="./Neural Network_files/image008.gif"></sub> &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; </span><span>(7.3)</span></p>
+
+<p>&nbsp;</p>
+
+<p><span>The structure of the arficial neuron in <span>Figure 7.5</span> is represented graphically using signal-flow graph
+notation. There are also other representations as shown in <span>Figure
+7.6</span>.</span></p>
+
+<p><span>&nbsp;</span>&nbsp;</p>
+
+<p align="center" style="text-align:center">&nbsp;</p>
+
+<p align="center">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    <img width="273" height="80" src="./Neural Network_files/image009.jpg"></p>
+
+<p align="center" style="text-align:center"><b>&nbsp;</b>&nbsp;</p>
+
+<p align="center" style="text-align:center"><b>(a)</b></p>
+
+<p align="center" style="text-align:center">&nbsp;</p>
+
+<p align="center" style="text-align:center">
+    <img width="281" height="56" src="./Neural Network_files/image010.jpg"></p>
+
+<p align="center" style="text-align:center"><b>&nbsp;</b>&nbsp;</p>
+
+<p align="center" style="text-align:center"><b>(b)</b></p>
+
+<p class="MsoCaption" style="margin-top:6.0pt;margin-right:27.0pt;margin-bottom:6.0pt;margin-left:36.0pt;text-align:justify"><a name="_Ref53339060">Figure 7.</a>6 : <span style="font-weight:normal">Graphical</span> <span style="font-weight:
+normal">representations of artifical neuron; (a) Dendritic representation, and
+(b) block-diagram representation.</span></p>
+
+<p style="margin-top:0cm;margin-right:0cm;margin-bottom:6.0pt;margin-left:50.7pt;text-align:justify;text-indent:-50.7pt;text-autospace:none">
+    &nbsp;</p>
+     
+<a name="c73/"><h3>7.3 Neural Network</h3>
+
+ 
+<p><span>A</span><i><span> neural network </span></i><span>consists of formal
+neurons which are connected in such a way that each neuron output further
+serves as the input of generally more neurons similarly as the axon terminals
+of a biological neuron are connected via synaptic bindings with dendrites of
+other neurons. The number of neurons and the way that they are inter­connected
+determine the <b>architecture </b>(topology)<i> </i>of neural network.
+Regarding their purpose, the <i>input, working (hidden layer, mediate</i>) and <i>output</i>
+neurons may be distinguished in the network. The input and output neurons
+represent the receptors and effectors, respectively, and the connected working
+neurons create the corresponding channels between them to prop­agate the
+respective signals. These channels are called <b>paths</b> in the mathematical
+model. The signal propagation and information processing along a network path
+is realized by changing the states of neurons on this path. The states of all
+neurons in the network form the <i>state </i>of the neural network and the
+synaptic weights associated with all connections represent the <b>configuration
+</b>of the neural network.</span></p>
+
+<p><span>The neural network develops
+gradually in time, specifically, the interconnections as well as the neuron
+states are being changed, and the weights are being adapted. In the context of
+updating, these network attributes in time, it is useful to split the global <b>dynamics</b><i>
+</i>of neural network into three dynamics and consider three <b>modes </b>(<b>phases</b>)<i>
+</i>of network operation: <i>architectural </i>(topology change), <i>computational
+</i>(state change), and <i>adaptive </i>(configuration change) (see <span>Figure 7.7</span>). This classification does not correspond to
+neurophysiologi­cal reality since in the nervous system all respective changes
+proceed simultaneously. The above-introduced dynamics of neural network are
+usually specified by an initial condition and by a mathematical equation or
+rule that, determines the development of a particular network characteristic
+(topology, state, configuration) in time. The up­dates controlled by these
+rules are performed in the corresponding operational modes of neural network.</span></p>
+
+<p align="center" style="margin-bottom:6.0pt;text-align:center;text-indent:17.85pt;text-autospace:none"><span style="font-size:
+11.0pt"><img width="342" height="109" src="./Neural Network_files/image011.jpg"></span></p>
+
+</a><p class="MsoCaption" align="center" style="text-align:center"><a name="c73/"></a><a name="_Ref53062942">Figure 7.</a>7 : <span style="font-weight:normal">Classification
+of global dynamics</span>. <span style="font-weight:normal">Phases of network
+operation.</span></p>
+
+<p align="center" style="margin-bottom:6.0pt;text-align:center;text-indent:17.85pt;text-autospace:none"><span style="font-size:
+11.0pt">&nbsp;</span>&nbsp;</p>
+
+<p><span>By a concretization of the
+introduced dynamics, various models of neural networks are obtained which are
+suitable to solve specific tasks. This means that in order to specify a
+particular neural network model it suffices to define its architectural, com­putational,
+and adaptive dynamics. In the following exposition, general principles and
+various types of these three dynamics are described which represent the basis
+for the classification of neural network models.&nbsp; </span></p>
+
+<p><span style="font-size:11.0pt">&nbsp;</span>&nbsp;</p>
+
+<a name="c731"><h4>7.3.1 Architectural Dynamics</h4>
+
+ 
+<p><span>The architectural dynamics specifies the network
+topology and its possible change. The architecture update usually applies
+within the framework of an adaptive mode in such a way that the network is
+supplied with additional neurons and connections when it is needed. However, in
+most cases the architectural dynamics assumes a fixed neural network topology,
+which is not changed anymore.</span></p>
+
+<p><span>Two types of architectures are
+distinguished: <b>cyclic</b><i> </i>(<i>recurrent</i>)<i> </i>and <b>acyclic </b>(<i>feedforward</i>)<i>
+</i>network. In the cyclic topology, there exists a group of neurons in the
+network, which are connected into a ring <i>cycle. </i>This means that in this
+group of neurons the output of the first neuron represents the input of the
+second neuron whose output is again the input for the third neuron, etc. as far
+as the output of the last neuron in this group is the input of the first
+neuron. The simplest cycle is a <i>feedback </i>of the neuron whose output
+serves simultaneously as its input. The maximum number of cycles is contained
+in the <i>complete topology </i>in which the output of each neuron represents
+the input for all neurons. An example of a general cyclic neural network is
+depicted in <span>Figure 7.8</span> a where all the cycles are
+indicated. On the contrary, the feedforward neural networks do not contain any
+cycle and all paths lead in one direction. An example of an acyclic neural
+network is in <span>Figure 7.8</span> b where the longest path is
+marked.</span></p>
+
+<p align="center"><span><img width="241" height="190" src="./Neural Network_files/image012.gif">
+     
+    <img width="241" height="188" src="./Neural Network_files/image013.gif"></span></p>
+
+<p align="center"><span>
+    <b>(a) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+(b)</b></span></p>
+
+</a><p class="MsoCaption" align="center" style="text-align:center"><a name="c731"></a><a name="_Ref53115297">Figure 7.</a>8 : <span style="font-weight:normal">Example
+of architectural dynamics: </span>a<span style="font-weight:normal">. cyclic
+architecture,&nbsp;
+</span>b<span style="font-weight:normal">. Acyclic architecture.</span></p>
+
+<p>&nbsp;</p>
+
+<p><span>The neurons in the feedforward
+networks can always be disjointly split into <b>layers </b>which are ordered
+(e.g. arranged one over another) so that the connections among neurons lead
+only from lower layers to upper ones and generally, they may skip one or more
+layers. Especially, in a <b>multilayered neural network</b><i>, </i>the zero
+(lower), <i>input </i>layer consists of input neurons while the last (upper), <i>output
+</i>layer is composed of output neurons. The remaining, <i>hidden </i>(<i>intermediate</i>)<i>
+</i>layers contain hidden neurons. The layers are counted starting from zero
+that corresponds to the input layer, which is then not included in the number
+of network layers (e.g. a two-layered neural network consists of input, one
+hidden, and output layer). In the topology of a multilayered network, each
+neuron in one layer is connected to all neurons in the next layer (possibly
+missing connections between two consecutive layers might be implicitly
+interpreted as connections with zero weights). Therefore, the multilayered
+architecture can be specified only by the numbers of neurons in particular
+layers, typically hyphened in the order from input to output layer. In
+addition, any path in such a network leads from the input layer to the output one
+while containing exactly one neuron from each layer. An example of a
+three-layered neural network 3-4-3-2 with an indicated path is in <span>Figure 7.9</span> which, besides the input and output layers, is
+composed of two hidden layers.</span></p>
+
+<p align="center" style="margin-bottom:6.0pt;text-align:center;text-indent:17.85pt;text-autospace:none"><span><img width="260" height="181" src="./Neural Network_files/image014.jpg"></span></p>
+
+<p class="MsoCaption" align="center" style="text-align:center"><a name="_Ref53117634">Figure 7.</a>9 : <span style="font-weight:normal">Example
+of architecture of multilayered (three-layered) neural network 3-4-3-2.</span></p>
+    <p>
+        <span style="font-weight: normal"></span>&nbsp;</p>
+
+ 
+<a name="c732/"><h4>7.3.2 Computational Dynamics</h4>
+
+ 
+<p><span>&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;The computational dynamics specifies the network <b>initial
+state </b>and a rule for its up­dates in time, providing that the network
+topology and configuration are fixed. At the beginning of computational mode,
+the <i>states </i>of input neurons are assigned to the <i>network input </i>and
+the remaining neurons find themselves in the initial state<i>. </i>All
+potential network inputs and states form the <b>input </b>and <b>state space</b><i>
+</i>of neural network, respectively. After initializing the network state, a
+proper computation is performed. </span></p>
+
+<p>Neural networks considered in previous sections belong to the class of <b>static
+</b>(feedforward)<b> </b>systems which can be fully described by a set of <i>m</i>-functions
+of <i>n</i>-variables (see Figure 7.10). The defining feature of the static
+systems is that they are time-independent<b>, </b>current outputs depends only
+on the current inputs in the way specified by the mapping function. This
+function can be very complex. </p>
+
+<p align="center" style="text-align:center;text-indent:36.0pt;text-autospace:none"><span style="color:#333399"><img width="213" height="42" src="./Neural Network_files/image015.jpg"></span></p>
+
+<p align="center" style="text-align:center;text-indent:36.0pt;text-autospace:none"><span style="color:#333399">&nbsp;</span>&nbsp;</p>
+
+</a><p class="MsoCaption" align="center" style="text-align:center"><a name="c732/"></a><a name="_Ref53471601">Figure 7.</a>10 : <span style="font-weight:normal">A static
+system: <i>y</i>=<i>f</i>(<i>x</i>)</span></p>
+
+<p>&nbsp;</p>
+
+<p>In the <b>dynamic </b>(recurrent, feedback) systems, the current output
+signals depend, in general, on current and past input signals. There are two
+equivalent classes of dynamic systems: continuous-time and discrete-time
+systems. <b>Continuous-time </b>dynamic systems operate with signals which are
+functions of a continuous variable, that is <span>continuous
+function of time</span>. A spatial variable can be also used. Continuous-time
+dynamic systems are described by means of differential equations. The most
+convenient yet general description uses only first-order differential equations
+in the following form:</p>
+
+<p><span style="color:#333399">&nbsp;</span>&nbsp;</p>
+
+<p><span style="color:#333399"><sub><img width="113" height="31" src="./Neural Network_files/image016.gif"></sub> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
+</span>(7.4)</p>
+
+<p>where</p>
+
+<p><span style="color:#333399"><sub><img width="75" height="39" src="./Neural Network_files/image017.gif"></sub>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; </span>(7.5)</p>
+
+<p>is a vector
+of time derivatives of output signals. In order to model a dynamic system, or
+to obtain the output signals, the integration operation is required. The
+dynamic system of eq. 7.5 is illustrated in Figure 7.11. It is evident that
+feedback is inherent to dynamic systems.</p>
+
+<p 2=""><span style="color:windowtext">&nbsp;</span>&nbsp;</p>
+
+<p 2="" align="center" style="text-align:center"><img width="262" height="77" src="./Neural Network_files/image018.jpg"></p>
+
+<p 2="" align="center" style="text-align:center">&nbsp;</p>
+
+<p class="MsoCaption" align="center" style="text-align:center"><a name="_Ref53472601">Figure 7.</a>11 : <span style="font-weight:normal">A
+continuous-time dynamic system:</span><span style="color:#333399"> <sub><img width="100" height="19" src="./Neural Network_files/image019.gif"></sub></span></p>
+
+<p style="margin-bottom:0cm;margin-bottom:.0001pt"><span>However, in most cases a discrete computational time is as­sumed.</span><b>
+Discrete-time</b> dynamic systems operate with signals which are functions of a
+discrete variable, but a discrete spatial variable can be also used. <span>At the beginning the network finds itself at time 0 and the network
+state is updated only at time 1, 2, 3.. . At each such time step one neuron
+(during <b>sequential </b>computation) or more neurons (during <b>parallel </b>computation)
+are selected according to a given rule of computational dynamics. Then, each of
+these neurons collects its inputs, i.e. the outputs of incident neurons, and updates<i>
+</i>(changes) its state with respect to them. </span>Analogously, discrete-time
+dynamic systems are described by means of difference equations. The most
+convenient yet general description uses only first-order difference equations
+in the following form: </p>
+
+<p><span style="color:#333399">&nbsp;</span>&nbsp;</p>
+
+<p><span style="color:#333399"><sub><img width="141" height="21" src="./Neural Network_files/image020.gif"></sub> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span>(7.6)</p>
+
+<p><span style="color:#333399">&nbsp;</span>&nbsp;</p>
+
+<p>where <i>y</i>(<i>n</i> + 1) and <i>y</i>(<i>n</i>) are the predicted
+(future) value and the current value of the vector <i>y</i>, respectively. In
+order to model a discrete-time dynamic system, or to obtain the output signals,
+we use the unit delay<b> </b>operator, <i>D</i> = <i>z</i><sup>-1</sup> which
+originates from the z-transform used to obtain analytical solutions to the
+difference equations. Using the delay operator, we have <i>z</i><sup>-1</sup><i>y</i>(<i>n</i>+1)=
+<i>y</i>(<i>n</i>) which leads to the structure as in Figure 7.12. Notice that
+feedback is also present in discrete model.<span style="color:blue">.</span></p>
+
+<p align="center">  <span style="color:blue"><img width="265" height="78" src="./Neural Network_files/image021.jpg"></span></p>
+
+<p class="MsoCaption" align="center" style="text-align:center"><a name="_Ref53557515">Figure 7.</a>12 : <span style="font-weight:normal">A
+discrete-time dynamic system: </span><span style="color:#333399"><sub><img width="125" height="19" src="./Neural Network_files/image022.gif"></sub></span></p>
+
+<p><span style="color:blue">&nbsp;</span>&nbsp;</p>
+
+<p><span>&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;
+    According to whether the neurons change their states
+independently on each other or their updating is centrally controlled, the <b>asynchronous
+</b>and <b>synchronous </b>models of neural networks, respectively, are
+distinguished. The states of output neurons, which are generally being varied
+in time, represent the output<i> </i>of neural network, which is the result of
+computation. Usually, the computational dynamics is considered so that the
+network output is constant after a while, and thus, the neural network, under
+computational mode, implements a function in the input space, i.e. for each
+network input exactly one output is computed. This <b>neural network function</b><i>
+</i>is specified by the computational dynamics whose equations are parametrized
+by the topology and configuration that are fixed during the computational mode.
+Ob­viously, the neural network is exploited for proper computations in the
+computational mode (see <span>Figure 7.13</span>).</span></p>
+
+<p><span>&nbsp;</span>&nbsp;</p>
+
+<p><span>&nbsp;</span>&nbsp;</p>
+
+<p align="center"><span><img width="474" height="144" src="./Neural Network_files/image023.jpg"></span></p>
+
+<p class="MsoCaption" align="center" style="text-align:center"><a name="_Ref53122690">Figure 7.</a>13 : <span style="font-weight:normal">Classification
+of neural network models according to computational dynamics.</span></p>
+
+<p><span>&nbsp;</span>&nbsp;</p>
+
+<p><span>&nbsp;</span>&nbsp;</p>
+
+<p><span>The computational dynamics also
+determines the function of particular neurons whose formal form (mathematical
+formula) is usually the same for all (non-input) neu­rons in the network (<b>homogeneous
+</b>neural network). By now, we have consid­ered only the function given by eq.
+7.3, which has been inspired by a biological neuron operation. However, in
+neural network models, various neuron functions are in general use, which may
+not correspond to any neurophysiological pattern, but they are designed only by
+mathematical invention or even motivated by other theories (e.g. physics). For
+example, instead of weighted sum (eq. 7.1) a polynomial in several indetermi­nates
+(inputs) is exploited in <b>higher-order neural networks</b><i>. </i>On the
+other hand, sometimes the excitation level corresponds formally to the distance
+between the input and respective weight vector, etc. In addition, the transfer
+function is often approximated by a continuous (or differentiable) activation
+function or replaced by a completely different function. For example, the <i>sigmoid
+activation functions </i>create a special class of trans­fer functions. This
+class includes <i>hard limiter </i>(eq. 7.7), <i>piecewise linear </i>(<i>saturated-linear
+function</i>)<i> </i>(eq. 7.8), <i>standart sigmoid </i>(<i>logistic function</i>)<i>
+</i>(eq. 7.9), <i>hyperbolic tangent </i>(eq. 7.10), etc.</span></p>
+
+<p class="MsoCaption" style="text-indent:36.0pt"><span>&nbsp;</span>&nbsp;</p>
+
+<p class="MsoCaption" style="text-indent:36.0pt"><span><sub><img width="107" height="45" src="./Neural Network_files/image024.gif"></sub></span><span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;hard limiter &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp;&nbsp; (7.7)</span></p>
+
+<p class="MsoCaption" style="text-indent:36.0pt"><span><sub><img width="136" height="68" src="./Neural Network_files/image025.gif"></sub> &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>piecewise-linear function &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; (7.8)</span></p>
+
+<p class="MsoCaption" style="text-indent:36.0pt"><span><sub><img width="91" height="40" src="./Neural Network_files/image026.gif"></sub></span><span> &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; standard
+(logistic)sigmoid &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; (7.9)</span></p>
+
+<p class="MsoCaption" style="text-indent:36.0pt"><span><sub><img width="165" height="44" src="./Neural Network_files/image027.gif"></sub></span><span> &nbsp;&nbsp; &nbsp;&nbsp; hyperbolic tangent &nbsp;&nbsp; &nbsp;&nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; (7.10)</span></p>
+
+<p>&nbsp;</p>
+
+<p><span style="text-align: center">The graphs of these sigmoid functions are drawn in <span>Figure 7.14</span>. Depending on whether the neuron function is
+discrete or continuous, the <i>discrete </i>and <i>analog </i>models of neural
+networks, respectively, are distinguished.</span></p>
+
+<p align="center"><span style="text-align: center"><img width="292" height="461" src="./Neural Network_files/image028.jpg" style="text-align: center"></span></p>
+
+<p align="center" style="text-align:center"><a name="_Ref53125692">Figure 7.</a>14 : <span style="font-weight:normal">Graphs
+of sigmoid activation function.</span></p>
+
+<a name="c733/"><h4>7.3.3 Adaptive dynamics</h4>
+
+ 
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; The adaptive dynamics specifies the network <b>initial
+configuration </b>and the way that the weights in the network are being adapted
+in time. All potential network configurations form the <b>weight space </b>of
+neural network. At the beginning of adaptive mode, the weights of all network
+connections are assigned to the initial configuration (e.g. randomly). After
+initializing the network configuration, the proper adaptation is per­formed.
+Similarly as for the computational dynamics, a model with a continuous-time
+evolution of neural network weights when the configuration is a (continuous)
+function of time usually described by a differential equation may generally be
+considered. How­ever, in most cases a discrete adaptation time is assumed.</span></p>
+
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; As we know, the network function in the
+computational mode depends on config­uration. The aim of adaptation is to find
+such a network configuration in the weight space that realizes a desired
+function in the computational mode. The computational mode is exploited for the
+respective network function computations while the adaptive mode serves for <i>learning
+</i>(programming) this function. There exist hundreds of suc­cessful <i>learning
+algorithms </i>for various neural network models (see <span>Figure 7.15</span>).
+For example, the most well-known and widely applied learning algorithm is the
+backpropagation for multilayered neural network. The neural network learning
+repre­sents mostly a complex non-linear optimization problem whose solving can
+be very time-consuming even for small tasks.</span></p>
+
+<p align="center" style="margin-bottom:6.0pt;text-align:center;text-indent:18.1pt;text-autospace:none"><span>&nbsp;</span>&nbsp;</p>
+
+<p align="center" style="margin-bottom:6.0pt;text-align:center;text-indent:18.1pt;text-autospace:none"><span><img width="255" height="89" src="./Neural Network_files/image029.jpg"></span></p>
+
+</a><p class="MsoCaption" align="center" style="text-align:center"><a name="c733/"></a><a name="_Ref53417801">Figure 7.</a>15 : <span style="font-weight:normal">Categorisation
+of learning paradigms.</span></p>
+
+<p>&nbsp;</p>
+
+<p><span>A neural network has to be configured such that the
+application of a set of inputs produces (either direct or via a relaxation
+process) the desired set of outputs. Various methods to set the strengths of
+the connections exist. One way is to set the weights explicitly, using a priori
+knowledge. Another way is to train the neural network by feeding it teaching
+patterns and letting it change its weights according to some learning rule.</span></p>
+
+<p><span>The desired network function is
+usually specified by a <i>training set </i>(<i>sequence</i>)<i> </i>of pairs
+composed of the network sample input and the corresponding desired output which
+are called <b>training patterns</b><i>. </i>The way, in which the network
+function is described by a training set, models a teacher (supervisor) who
+informs the adaptive mechanism about the correct network output corresponding
+to a given sample network input. There­fore, this type of adaptation is called <b>supervised
+learning</b><i>. </i>In supervised learning or associative learning, the
+network is trained by providing it with input and matching output patterns.
+These input-output pairs can be provided by an external teacher, or by the
+system, which contains the network (self-supervised)<i>. </i>Sometimes, instead
+of giving the desired network output value associated with a given sample
+input, a teacher evaluates the quality of actual current responses (outputs) by
+a mark. This is called <b>reinforcement </b>(graded) <b>learning</b><i>. </i></span></p>
+
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; A </span><span>different type of adaptation
+is <b>unsupervised learning </b>or <b>self-organization </b>that models the
+situa­tion when a teacher is not available. In this case, the training set
+contains only sample inputs and the neural network itself organizes the
+training patterns (e.g. into clusters) and discovers their global features. In unsupervised
+learning, an output unit is trained to respond to clusters of pattern within
+the input. In this method, the system is supposed to dis­cover statistically
+salient features of the input population. Unlike the supervised learning, there
+is not any<i> </i>set of categories exist into which the patterns are to be
+classified. Rather the system must develop its own representation of the input
+stimuli.</span></p>
+
+<p><i>Feedforward supervised networks </i>are
+typically used for function approximation tasks. Specific examples include
+linear recursive least-mean-square (LMS) networks, backpropagation networks,
+and radial basis networks. <i>Feedforward unsupervised networks </i>are used to
+extract important properties of the input data and to map input data into a
+“representation” domain. Two basic groups of methods belong to this category
+are Hebbian networks performing the Principal Component Analysis of the input
+data, also known as the Karhunen-Loeve Transform, and Competitive networks used
+to performed Learning Vector Quantization, or tessellation of the input data
+set. Self-Organizing Kohonen Feature Maps also belong to this group. <i>Feedback
+networks </i>are used to learn or process the temporal features of the input
+data and their internal state evolves with time. Specific examples include
+recurrent backpropagation networks, associative memories, and adaptive
+resonance networks.<b><span style="font-size:24.0pt"> </span></b></p>
+
+<p><b><span style="font-size:24.0pt">&nbsp;</span></b>&nbsp;</p>
+
+<h4><a name="ref"><span>REFERENCES</span></a></h4>
+
+<p><b><span>&nbsp;</span></b>&nbsp;</p>
+
+<p style="margin-left:36.0pt;text-indent:-36.0pt">[1] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+    &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; Sima
+J. (1998). <i>Introduction to Neural Networks, </i>Technical Report No. V 755,
+Institute of Computer Science, Academy of Sciences of the Czech Republic </p>
+
+<p style="margin-left:36.0pt;text-align:justify;text-indent:
+-36.0pt">[2] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+    &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; Kröse B., and van der Smagt P. (1996). <i>An</i> <i>Introduction
+to Neural Networks</i>.<i> </i>(8<sup>th</sup> ed.) University of Amsterdam
+Press, University of Amsterdam.<i> </i></p>
+
+<p style="margin-left:36.0pt;text-align:justify;text-indent:
+-36.0pt">[3] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+    &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; Gurney K. (1997). <i>An</i> <i>Introduction to Neural
+Networks</i>.<i> </i>(1<sup>st</sup> ed.) UCL Press, London EC4A 3DE, UK.<i> </i></p>
+
+<p style="margin-left:36.0pt;text-align:justify;text-indent:
+-36.0pt">[4] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+    &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; Paplinski A.P. <i>Neural Nets</i>.<i> </i>Lecture Notes,
+Dept. of Computer Sciences and Software Eng., Manash Universtiy,
+Clayton-AUSTRALIA </p>
+
+</div>
+    </div>
+
+
+<!--Google Analytics Begin -->      
+<script type="text/javascript" async="" src="./Neural Network_files/dc.js"></script><script type="text/javascript">var _gaq = _gaq || [];_gaq.push(['_setAccount', 'UA-3680970-6']);_gaq.push(['_setDomainName', 'byclb.com']);_gaq.push(['_trackPageview']);(function() {var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);})();</script> 
+<!--Google Analytics End -->      
+
+
+
+
+
+</body></html>

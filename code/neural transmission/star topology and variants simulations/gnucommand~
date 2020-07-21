@@ -1,0 +1,11 @@
+set terminal png
+set grid
+set xtics 1.0
+set output "output graph"
+set xlabel "time( in miliseconds)"
+set ylabel "neurons in the network"
+
+plot "firing_table.dat" using 1:2:3 w yerrorbars ls 3
+replot
+set output
+reset

@@ -1,0 +1,6 @@
+ set terminal png
+set output "100.png"
+ plot "datapoints.dat" with lines
+ replot
+ set output
+ exit
