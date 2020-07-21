@@ -1,0 +1,2898 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\begin_preamble
+\date{}
+\end_preamble
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 2
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Variable Topology Neural Network Simulator
+\end_layout
+
+\begin_layout Author
+Manu Jayadharan,
+\begin_inset Newline newline
+\end_inset
+
+MS student in Mathematics,
+\begin_inset Newline newline
+\end_inset
+
+IISER Mohali
+\end_layout
+
+\begin_layout Abstract
+The complexity of neural networks can be ascribed to their topology and
+ nature of interconnections rather than specialization of neurons.
+ So understanding how the topology of neural networks affect signal propagation
+ across the network plays a key role in developing an insight into how similar
+ action potentials can be used to propagate complex information from and
+ to the brain.
+ In this work, we make an attempt to lay down a computationally efficient
+ algorithm to make a simplified Variable Topology Neural Network Simulator(VTNNS
+) that can simulate or mimic the behavior of signal propagation in a neural
+ network with any specified topology and synaptic relation.
+ The simulator is based on the exact solution of mathematical formulation
+ of a network based on LIF model (see 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-8"
+literal "false"
+
+\end_inset
+
+) which gives it high computational efficiency.
+ The model could incorporate various kind of synaptic interactions.
+ Choice of LIF model is justified by the existence of closed form solution
+ and ease of implementation and inference.
+ Never the less, more realistic models can be used for modeling VTNNS.
+ A more complex version of this prototype could possibly be used to simulate
+ biological phenomenons like the effect of drug interaction in the central
+ nervous system and other practical applications which calls for signal
+ tracking within a biological neural network.
+\end_layout
+
+\begin_layout Section
+Mathematical Model
+\end_layout
+
+\begin_layout Standard
+LIF model of a single neuron with time constant 
+\begin_inset Formula $\tau$
+\end_inset
+
+ can be described by the following equation:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\tau\frac{dV}{dt}=-(V-V_{0})\label{eq:3.1.1}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Now after accounting for the synaptic interactions in this model, we will
+ get 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\tau\frac{dV}{dt}=-(V-V_{0})-g^{+}(t)(V-E^{+})-g^{-}(t)(V-E^{-})\label{eq:3.1.2}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where 
+\begin_inset Formula $g^{+}$
+\end_inset
+
+ and 
+\begin_inset Formula $g^{-}$
+\end_inset
+
+are the total excitatory and inhibitory conductance from other neurons in
+ the network relative to the leak conductance and 
+\begin_inset Formula $E^{+}$
+\end_inset
+
+and 
+\begin_inset Formula $E^{-}$
+\end_inset
+
+are the excitatory and inhibitory reversal potential respectively.
+\end_layout
+
+\begin_layout Standard
+Synaptic conductance 
+\begin_inset Formula $g$
+\end_inset
+
+ is assumed to follow exponential decay with time constant 
+\begin_inset Formula $\tau_{s}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\tau_{s}\frac{dg^{i}}{dt}=-g^{i}\label{eq:3.1.3}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The above model can be simulated either using time driven simulations(slowly
+ progressing with time using numerical integration methods) or by event-driven
+ simulation(progresses by going from one firing event to another firing
+ event)
+\end_layout
+
+\begin_layout Standard
+We are using the latter for our simulations, the reason being the computational
+ efficiency of the latter relative to the former[see Exact simulation of
+ Integrate and Fire models with synaptic conductance, Brette, 2006] which
+ comes in handy for simulation of large network of neurons.
+\end_layout
+
+\begin_layout Standard
+We assume that both the excitatory and inhibitory conductance has same time
+ constant 
+\begin_inset Formula $\tau_{s}$
+\end_inset
+
+, this is a trade-off we make to get an exact solution of the equation 
+\begin_inset Formula $(\ref{eq:3.1.2})$
+\end_inset
+
+ which can then be used to develop the simulator.
+\end_layout
+
+\begin_layout Standard
+In equation 
+\begin_inset Formula $(\ref{eq:3.1.2})$
+\end_inset
+
+, we assume 
+\begin_inset Formula $V_{0}=0$
+\end_inset
+
+ and express the time constant in units of 
+\begin_inset Formula $\tau$
+\end_inset
+
+ to get :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\frac{dV}{dt}=-V+(g^{+}(t)+g^{-}(t))(E_{s}(t)-V)\label{eq:3.1.4}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where 
+\begin_inset Formula $E_{s}(t)=\frac{g^{+}(t)E^{+}+g^{-}(t)E^{-}}{g^{+}(t)+g^{-}(t)}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $E_{s}$
+\end_inset
+
+can be seen as the effective synaptic reverse potential at time 
+\begin_inset Formula $t$
+\end_inset
+
+ which dynamically depends on the synaptic conductance 
+\begin_inset Formula $g(t)$
+\end_inset
+
+ .
+\end_layout
+
+\begin_layout Standard
+In equation 
+\begin_inset Formula $(\ref{eq:3.1.3})$
+\end_inset
+
+ and 
+\begin_inset Formula $(\ref{eq:3.1.4})$
+\end_inset
+
+, we substitute 
+\begin_inset Formula $g^{+}+g^{-}=g$
+\end_inset
+
+ to get:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\frac{dV}{dt}=-V+(E_{s}(t)-V)g\label{eq:3.1.5}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\tau_{s}\frac{dg}{dt}=-g\label{eq:3.1.6}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+equation 
+\begin_inset Formula $(\ref{eq:3.1.5})$
+\end_inset
+
+ can be solved to get 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray}
+V(t) & = & -\rho(1-\tau_{s},\tau_{s}g(t))\tau_{s}E_{s}g(t)\nonumber \\
+ &  & +exp(\tau_{s}(g(t)-g(0))-t)(V(0)\nonumber \\
+ &  & +\rho(1-\tau_{s},\tau_{s}g(0))\tau_{s}E_{s}g(0)\label{eq:3.1.7}
+\end{eqnarray}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where, 
+\begin_inset Formula $\rho(a,b)=e^{b}x^{-a}\gamma(a,b)$
+\end_inset
+
+ with 
+\begin_inset Formula $\gamma(a,b)=\int_{0}^{b}e^{-t}t^{a-1}dt$
+\end_inset
+
+ which is the incomplete gamma integral.
+\end_layout
+
+\begin_layout Standard
+Complete derivation of the solution is given is given in Appendix-A .
+ 
+\end_layout
+
+\begin_layout Standard
+Fast computing numerical libraries are available for efficient calculation
+ of the incomplete gamma integrals.
+\end_layout
+
+\begin_layout Section
+Designing the Simulator
+\end_layout
+
+\begin_layout Standard
+Here we explore a proper algorithm for the simulation of the spiking and
+ its propagation in a neural network.
+ Basic model of the simulator takes topology of the network and initial
+ conditions of the neurons as input and gives a sorted table of possible
+ firing of neurons which can then be plotted for analysis.
+\end_layout
+
+\begin_layout Enumerate
+Each neuron in the network has three parameters which need to be updated
+ suitably in the simulation namely: 
+\begin_inset Formula $V$
+\end_inset
+
+, 
+\begin_inset Formula $g$
+\end_inset
+
+
+\series bold
+ ,
+\begin_inset Formula $E_{s}$
+\end_inset
+
+ 
+\series default
+and 
+\series bold
+
+\begin_inset Formula $t_{0}$
+\end_inset
+
+ 
+\series default
+, where 
+\begin_inset Formula $t_{0}$
+\end_inset
+
+ is the time of last update of the neuron and 
+\begin_inset Formula $V$
+\end_inset
+
+, 
+\begin_inset Formula $g$
+\end_inset
+
+
+\series bold
+ ,
+\begin_inset Formula $E_{s}$
+\end_inset
+
+ 
+\series default
+being the state variables of the neuron at 
+\begin_inset Formula $t_{0}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+When a neuron reaches the threshold voltage 
+\begin_inset Formula $V_{th}$
+\end_inset
+
+, 
+\begin_inset Formula $V$
+\end_inset
+
+ is reset to 
+\begin_inset Formula $V_{reset}$
+\end_inset
+
+.
+ Both 
+\begin_inset Formula $V_{th}$
+\end_inset
+
+ and 
+\begin_inset Formula $V_{reset}$
+\end_inset
+
+ are fixed according to the values of time constants and reverse potentials
+ we give.
+\end_layout
+
+\begin_layout Enumerate
+We need functions/subroutines to update the parameters of a neuron when
+ it spikes and also to update the parameters of other neurons after the
+ spiking.
+ Also subroutines should be defined to find the next firing time of each
+ neuron, which can be finite or 
+\begin_inset Formula $\infty$
+\end_inset
+
+in the case of no upcoming spike.
+\end_layout
+
+\begin_layout Enumerate
+Synaptic relation between neurons in the network can be defined in the form
+ of a weight matrix 
+\begin_inset Formula $W$
+\end_inset
+
+ of dimension same as the number of neurons in the network such that 
+\begin_inset Formula $(i,j)^{th}$
+\end_inset
+
+entry 
+\begin_inset Formula $w_{ij}$
+\end_inset
+
+ quantitatively represent the change in the synaptic conductance of 
+\begin_inset Formula $j^{th}$
+\end_inset
+
+neuron due to the firing of the 
+\begin_inset Formula $i^{th}$
+\end_inset
+
+ neuron.
+ 
+\begin_inset Formula $w_{ij}$
+\end_inset
+
+can be positive(excitatory) or negative(inhibitory).
+\end_layout
+
+\begin_layout Standard
+VTNNS is modeled in two ways: one without time delay for the transmission
+ of the signal, and one with the time delay.
+ Basic algorithm for both are sketched in the following section.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+VTNNS with time delay
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Enumerate
+Suitable time delay should be predefined as 
+\begin_inset Formula $t_{lag}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Maintain a sorted table of firing time of neurons and table of time for
+ updating neurons due to synaptic conductance from each neuron.
+\end_layout
+
+\begin_layout Enumerate
+Find 
+\begin_inset Formula $t$
+\end_inset
+
+ which is the time for next neuron firing and 
+\begin_inset Formula $t_{update}$
+\end_inset
+
+which is the time for next update of neuron due to synaptic connection.
+\end_layout
+
+\begin_layout Enumerate
+If 
+\begin_inset Formula $t<t_{update}$
+\end_inset
+
+, and 
+\begin_inset Formula $i$
+\end_inset
+
+ is the neuron to be fired with 
+\begin_inset Formula $t_{0}$
+\end_inset
+
+being its last update time then,
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $V\to V_{reset}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $g\to g*exp(\frac{-(t-t_{0})}{\tau_{s}})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+if next update time of 
+\begin_inset Formula $i>t+t_{lag}$
+\end_inset
+
+then, set next update time of 
+\begin_inset Formula $i$
+\end_inset
+
+ to 
+\begin_inset Formula $t+t_{lag}$
+\end_inset
+
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+If 
+\begin_inset Formula $t_{update}<t$
+\end_inset
+
+ and 
+\begin_inset Formula $t_{update}$
+\end_inset
+
+ is the synaptic update due to spike coming from neuron 
+\begin_inset Formula $i$
+\end_inset
+
+ , then for each other neuron 
+\begin_inset Formula $j$
+\end_inset
+
+ with last update time 
+\begin_inset Formula $t_{0}$
+\end_inset
+
+,
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $V\to V(t_{update}-t_{0})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $g\to g*exp(\frac{-(t_{update}-t_{0})}{\tau_{s}})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $E_{s}\to\frac{gE_{S}+pw_{ij}+q|w_{ij}|}{g+|w_{ij}|}$
+\end_inset
+
+ where 
+\begin_inset Formula $p=\frac{E^{+}-E^{-}}{2}$
+\end_inset
+
+and 
+\begin_inset Formula $q=E^{+}+E^{-}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $g\to g+|w_{ij}|$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Update the firing time table of neurons
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+with time delay
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Note: step 4.(c) automatically incorporates a refractory period for the propagati
+on of spikes since even if one of the neuron fires rapidly only one transmission
+ of the spike through a synapse is possible until the time delay is reached.
+\end_layout
+
+\begin_layout Subsection
+VTNNS without time delay
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Enumerate
+Maintain a sorted table of firing time of various neurons in the network.
+\end_layout
+
+\begin_layout Enumerate
+Updating the neuron after it fires: If a neuron is to be first at time 
+\begin_inset Formula $t$
+\end_inset
+
+ and if 
+\begin_inset Formula $t_{0}$
+\end_inset
+
+is the last time of update of the neuron, 
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $V\to V_{reset}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $g\to g*exp(\frac{-(t-t_{0})}{\tau_{s}})$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Updating neuron 
+\begin_inset Formula $j$
+\end_inset
+
+ after 
+\begin_inset Formula $i$
+\end_inset
+
+ neuron fires: If a neuron fires at time 
+\begin_inset Formula $t$
+\end_inset
+
+, then for each other neuron with last update time 
+\begin_inset Formula $t_{0}$
+\end_inset
+
+,
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $V\to V(t-t_{0})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $g\to g*exp(\frac{-(t-t_{0})}{\tau_{s}})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $E_{s}\to\frac{gE_{S}+pw_{ij}+q|w_{ij}|}{g+|w_{ij}|}$
+\end_inset
+
+ where 
+\begin_inset Formula $p=\frac{E^{+}-E^{-}}{2}$
+\end_inset
+
+and 
+\begin_inset Formula $q=\frac{E^{+}+E^{-}}{2}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $g\to g+|w_{ij}|$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Update the firing time table of neurons
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+without time delay
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Finding the next firing time of a neuron in the network
+\end_layout
+
+\begin_layout Standard
+For each neuron, next firing time is defined as the time at which the voltage
+ 
+\begin_inset Formula $V$
+\end_inset
+
+ reaches .
+ From equation 
+\begin_inset Formula $(\ref{eq:3.1.7})$
+\end_inset
+
+, it can be seen that 
+\begin_inset Formula $V$
+\end_inset
+
+ first increases and then decreases, so initial part of the curve is concave
+ in nature and if 
+\begin_inset Formula $V_{th}$
+\end_inset
+
+ is in this part of the curve, Newton -Raphson method can be used to firing
+ time with assured convergence .
+\end_layout
+
+\begin_layout Standard
+But in most cases, next firing time will be 
+\begin_inset Formula $\infty$
+\end_inset
+
+ which means the neuron never spikes.
+ To save the computational expenses in cases where the neuron never spikes,
+ we use a series of spiking tests to check whether the neurons spikes before
+ going to the process of finding out the firing time.
+\end_layout
+
+\begin_layout Standard
+First of all, 
+\begin_inset Formula $E_{S}$
+\end_inset
+
+ should exceed 
+\begin_inset Formula $V_{th}$
+\end_inset
+
+ otherwise no spiking is possible.
+ Assume 
+\begin_inset Formula $E_{s}>V_{th}$
+\end_inset
+
+.
+ From equations 
+\begin_inset Formula $(\ref{eq:3.1.5})$
+\end_inset
+
+ and 
+\begin_inset Formula $(\ref{eq:3.1.6})$
+\end_inset
+
+ it can be concluded whether a neuron spikes or not solely depends on the
+ initial conditions 
+\begin_inset Formula $V_{0}$
+\end_inset
+
+and 
+\begin_inset Formula $g_{0}$
+\end_inset
+
+.
+ If a neuron fires with initial condition 
+\begin_inset Formula $(V_{0},g_{0})$
+\end_inset
+
+ , then it fires for any other initial condition 
+\begin_inset Formula $(V_{1},g_{0})$
+\end_inset
+
+ with 
+\begin_inset Formula $V_{0}<V_{1}$
+\end_inset
+
+.
+ So for each 
+\begin_inset Formula $g$
+\end_inset
+
+, there exists a minimum voltage 
+\begin_inset Formula $V_{min}(g)$
+\end_inset
+
+ for which the the neuron fires.
+ So the set of points 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+C=\{V_{min}(g),g\}
+\]
+
+\end_inset
+
+ gives a minimum spiking curve , so that if the initial conditions 
+\begin_inset Formula $(V_{0},g_{0})$
+\end_inset
+
+ lies above 
+\begin_inset Formula $C$
+\end_inset
+
+ , then the neuron is guaranteed to fire.
+ Consider the trajectory in the phase space of solutions of 
+\begin_inset Formula $V(g)$
+\end_inset
+
+ starting on 
+\begin_inset Formula $C$
+\end_inset
+
+ from 
+\begin_inset Formula $(V_{0,}g_{0})$
+\end_inset
+
+.
+ This trajectory should be same as 
+\begin_inset Formula $C$
+\end_inset
+
+ and also should tangential to the threshold 
+\begin_inset Formula $V=V_{th}$
+\end_inset
+
+, otherwise there would be a trajectory below it which hits the threshold
+ which is not possible.
+ So the minimum firing potential 
+\begin_inset Formula $V_{min}(g)$
+\end_inset
+
+ can be found by substituting 
+\begin_inset Formula $\frac{dV_{min}}{dg}=0$
+\end_inset
+
+ at 
+\begin_inset Formula $V_{th}$
+\end_inset
+
+ with conductance 
+\begin_inset Formula $g_{min}$
+\end_inset
+
+in the equation 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\frac{dV_{min}}{dg}=\tau_{s}(1+1/g)V_{min}-\tau_{s}E_{s}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+to get:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+0=(1+1/g_{min})V_{th}-E_{s}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+g_{min}=\frac{1}{(E_{s}/V_{t})-1}\label{eq:3.1.8}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Since conductance 
+\begin_inset Formula $g$
+\end_inset
+
+ decreases with time, there is possibility of spike in future only if the
+ initial conductance 
+\begin_inset Formula $g_{0}>g_{min}$
+\end_inset
+
+.
+ Once this condition is satisfied, to make sure the neuron fires, we have
+ to check whether 
+\begin_inset Formula $V(g_{min})V_{th}$
+\end_inset
+
+.
+ 
+\begin_inset Formula $V(g_{min})$
+\end_inset
+
+ can be found by using equation 
+\begin_inset Formula $(\ref{eq:})$
+\end_inset
+
+ to calculate 
+\begin_inset Formula $V(t)$
+\end_inset
+
+ for 
+\begin_inset Formula $t$
+\end_inset
+
+ such that 
+\begin_inset Formula $g(t)=g_{min}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray}
+V(g_{min}) & = & -\rho(1-\tau_{s},\tau_{s}g_{min})\tau_{s}E_{s}g_{min}\nonumber \\
+ &  & +(\frac{g_{min}}{g_{0}})^{\tau_{s}}exp(\tau_{s}(g_{min}-g_{0})-t)\nonumber \\
+ &  & (V_{0}+\rho(1-\tau_{s},\tau_{s}g_{0})\tau_{s}E_{s}g_{0}\label{eq:3.1.9}
+\end{eqnarray}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Enumerate
+Check 
+\begin_inset Formula $E_{s}>V_{t}$
+\end_inset
+
+, if yes then
+\end_layout
+
+\begin_layout Enumerate
+Check 
+\begin_inset Formula $g_{0}>g_{min}$
+\end_inset
+
+, if yes then
+\end_layout
+
+\begin_layout Enumerate
+Check 
+\begin_inset Formula $V(g_{min})>V_{th}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Spike tests
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Neuron will fire iff the initial conditions passes all the three spike tests
+ above.
+\end_layout
+
+\begin_layout Section
+Coding for VTNNS
+\end_layout
+
+\begin_layout Standard
+Simulator with and without time lag in synaptic conductance is coded separately
+ .
+ We have used the algorithms to make two VTNNS setup: one in which the synaptic
+ interaction is very strong and a few neurons can be set to fire once and
+ check the propagation of the signal in the network, the second in which
+ one of the neurons in the network act as an oscillator(source of signal)
+ with a specified frequency.
+ The frequency of the latter can also be modeled as a random process following
+ some distribution like Poisson distribution.
+ Both the setups can be used depending on which specific bio-physiological
+ situation of a neural network that we want to simulate.
+\end_layout
+
+\begin_layout Standard
+All codes are written in 
+\begin_inset Formula $Fortran95$
+\end_inset
+
+ considering the efficiency of the same to handle huge arrays and computational
+ efficiency while doing huge calculations.
+ This give us an advantage to simulate large network within feasible computation
+ time.
+ Disadvantage being the difficulty in debugging and the code getting lengthy.
+ Apart from the fast computing library for finding incomplete gamma integral,
+ all other functions and packages for the VTNNS is self-written.
+ Also facility of automatically plotting the simulated data in the form
+ of raster plot is incorporated into the simulator.
+ Complete codes are available at 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://www.dropbox.com/sh/bkju25ktl9jip29/AABDjSxazoR0TcBQp13Xizema?dl=0
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+One of fortran code for VTNNS with time delay in synaptic conductance is
+ given in Appendix-B.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+placement b
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+compilation instruction in linux
+\begin_inset Formula $:\sim$
+\end_inset
+
+ sudo cp libmincog.a /usr/local/lib
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula $:\sim$
+\end_inset
+
+sudo cp lib_randomseed_gen.a /usr/local/lib
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula $:\sim$
+\end_inset
+
+f95 -o filename VTNNS_with_delay.f95 -lrandom_seed_gen -lmincog numerical.o
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Results(or Simulation of different topology of Neural networks)
+\end_layout
+
+\begin_layout Standard
+To demonstrate the functioning of VTNNS, neural networks of some common
+ simple typologies are simulated.
+ Results in the cases with and without time delay in synaptic conductance
+ is compared in most cases.
+ In all cases following parameters are fixed: 
+\begin_inset Formula $E^{+}=74.0$
+\end_inset
+
+, 
+\begin_inset Formula $E^{-}=-6.0$
+\end_inset
+
+, 
+\begin_inset Formula $\tau=20ms$
+\end_inset
+
+, 
+\begin_inset Formula $\tau_{s}=5ms$
+\end_inset
+
+, 
+\begin_inset Formula $V_{th}=20.0$
+\end_inset
+
+, 
+\begin_inset Formula $V_{reset}=14.0$
+\end_inset
+
+, time delay in transmission of the spike
+\begin_inset Formula $=0.02ms$
+\end_inset
+
+, oscillator time period of 
+\begin_inset Formula $0.2ms$
+\end_inset
+
+ .
+ At the beginning of the simulation 
+\begin_inset Formula $g_{0}$
+\end_inset
+
+ is randomly selected from 
+\begin_inset Formula $[0,0.015]$
+\end_inset
+
+, and 
+\begin_inset Formula $V_{0}$
+\end_inset
+
+ is randomly selected from 
+\begin_inset Formula $[10,16]$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Star Topology
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename ../star.jpg
+	scale 45
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+star topology
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /home/wickedboy_pc/git-repositories/Biological-VTNNS/resources/images/A1.png
+	scale 40
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Raster plot for neural network with star topology simulated using VTNNS
+ without time delay in propagation of spike, 
+\begin_inset Formula $w_{1j}=1.2$
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /home/wickedboy_pc/git-repositories/Biological-VTNNS/code/neural transmission/star topology and variants simulations/A2: with time lag of 0.001 weight=1.2
+	scale 40
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Raster plot for neural network with star topology simulated using VTNNS
+ with time delay in propagation of spike, 
+\begin_inset Formula $w_{1j}=1.2$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /home/wickedboy_pc/git-repositories/Biological-VTNNS/resources/images/B1.png
+	scale 40
+	rotateOrigin leftBottom
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Raster plot for neural network with star topology simulated using VTNNS
+ with time delay in propagation of spike, 
+\begin_inset Formula $w_{1j}=1.2$
+\end_inset
+
+ for neurons 
+\begin_inset Formula $1-24$
+\end_inset
+
+ and 
+\begin_inset Formula $w_{1j}=1.6$
+\end_inset
+
+ for neurons 
+\begin_inset Formula $25-50$
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /home/wickedboy_pc/git-repositories/Biological-VTNNS/code/neural transmission/star topology and variants simulations/B2: with time lag of 0.001and   weight =0.2
+	scale 40
+	rotateOrigin rightBottom
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Raster plot for simulation in which neuron oscillates with time period 
+\begin_inset Formula $0.2ms$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+ In 
+\emph on
+Figure 2
+\emph default
+ and 
+\emph on
+Figure 3
+\emph default
+, once the first neuron fires, some of the other neurons fire in a scattered
+ manner as expected.
+ There is a delay in the firing pattern of neurons in 
+\emph on
+Figure 3
+\emph default
+ due to the delay in the propagation of spike.
+ 
+\emph on
+In Figure 4,
+\emph default
+ 
+\begin_inset Formula $w_{1j}$
+\end_inset
+
+ is increased to 
+\begin_inset Formula $1.6$
+\end_inset
+
+ for neurons 
+\begin_inset Formula $25$
+\end_inset
+
+ to 
+\begin_inset Formula $50$
+\end_inset
+
+, as a result clear shift in the firing timing of neurons from 
+\begin_inset Formula $25$
+\end_inset
+
+ to 
+\begin_inset Formula $50$
+\end_inset
+
+ can be observed.
+ 
+\emph on
+Figure 5
+\emph default
+ shows the simulation in which neuron 
+\begin_inset Formula $1$
+\end_inset
+
+oscillates with time period 
+\begin_inset Formula $0.2ms$
+\end_inset
+
+, no kind of synchronizing behavior is observed even with the change of
+ the oscillation frequency with and without delay in transmission of spike.
+\end_layout
+
+\begin_layout Subsection
+Fully connected Topology
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename ../fully connected.jpg
+	scale 45
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+fully connected topology
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /home/wickedboy_pc/git-repositories/Biological-VTNNS/code/neural transmission/star topology and variants simulations/fully connected without timelag
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Raster plot for neural network with fully connected topology simulated using
+ VTNNS without time delay in propagation of spike,
+\begin_inset Formula $w_{ij}=1.2$
+\end_inset
+
+(each pair of neurons is connected to each other using an excitatory synapse).
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /home/wickedboy_pc/git-repositories/Biological-VTNNS/code/neural transmission/star topology and variants simulations/fully connected with time lag
+	scale 40
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Raster plot for neural network with fully connected topology simulated using
+ VTNNS with time delay in propagation of spike,
+\begin_inset Formula $w_{ij}=1.2$
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+Neurons in the network are seen to be firing in a synchronous manner.
+ This is expected because the topology of the network is in such a way that
+ each pair of neurons is coupled to each other in terms of excitatory synaptic
+ relation.
+ In the right image, repeated firing of neurons is restricted, this is due
+ to the refractory period in the firing of neurons included in the algorithm
+ for VTNNS with time delay in propagation of spike.
+\end_layout
+
+\begin_layout Subsection
+Ring topology
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename ../2012-01-11-cypress-figure-1.jpg
+	scale 45
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+ring topology
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /home/wickedboy_pc/git-repositories/Biological-VTNNS/code/neural transmission/star topology and variants simulations/A1: without time lag_same weight=1.2
+	scale 45
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Raster plot for neural network with ring topology simulated using VTNNS
+ without time delay in propagation of spike.
+\begin_inset Formula $w_{i,i+1}=1.0$
+\end_inset
+
+ for 
+\begin_inset Formula $i=1,..,9$
+\end_inset
+
+ and 
+\begin_inset Formula $w_{10,1}=1.0$
+\end_inset
+
+(each neuron is connected to the next neuron in the order in a circle with
+ an excitatory sypansis).
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /home/wickedboy_pc/git-repositories/Biological-VTNNS/code/neural transmission/star topology and variants simulations/A2: with time lag of 0.001 weight=1.2
+	scale 45
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Raster plot for neural network with ring topology simulated using VTNNS
+ with time delay in propagation of spike.
+\begin_inset Formula $w_{i,i+1}=1.0$
+\end_inset
+
+ for 
+\begin_inset Formula $i=1,..,9$
+\end_inset
+
+ and 
+\begin_inset Formula $w_{10,1}=1.0$
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+In both cases a triangular shape is obtained by the plot.
+ Very close synchronizing behavior is also visible in both the cases.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-8"
+literal "true"
+
+\end_inset
+
+Exact simulation of Integrate and Fire models with synaptic conductances,Brette,
+2006.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+onecolumn
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+Appendix A
+\end_layout
+
+\begin_layout Subsection*
+Solution for the coupled differential equation
+\end_layout
+
+\begin_layout Subsubsection*
+Proof.
+\end_layout
+
+\begin_layout Standard
+We need to solve the system of equations :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\frac{dV}{dt}=-V+(E_{s}(t)-V)g
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\tau_{s}\frac{dg}{dt}=-g
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+From equation 
+\begin_inset Formula $(3.4.1)$
+\end_inset
+
+ we write 
+\begin_inset Formula $V$
+\end_inset
+
+ as a function of 
+\begin_inset Formula $g$
+\end_inset
+
+ as 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\frac{dV}{dg}=\tau_{s}(1+\frac{1}{g})V-\tau_{s}E_{s}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+And it follows that 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\frac{d}{dg}(V(exp(-\tau_{s}(g+log\,g)))=-\tau_{s}E_{s}exp(-\tau_{s}(g+log\,g))
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Now integrating between 
+\begin_inset Formula $g(0)$
+\end_inset
+
+ and 
+\begin_inset Formula $g(t)$
+\end_inset
+
+ , we get
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\frac{V(t)exp(-\tau_{s}g(t))}{g(t)^{-\tau_{s}}}-\frac{V(0)exp(-\tau_{s}g(0))}{g(0)^{\tau_{s}}}=-\tau_{s}E_{s}\int_{g(0)}^{g(t)}\frac{exp(-\tau_{s}g)}{g^{\tau_{s}}}dg
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+now by substituting 
+\begin_inset Formula $\tau_{s}g=h$
+\end_inset
+
+ in the aboove equation will be 
+\begin_inset Formula 
+\begin{align*}
+\frac{V(t)exp(-\tau_{s}g(t))}{g(t)^{-\tau_{s}}}-\frac{V(0)exp(-\tau_{s}g(0))}{g(0)^{\tau_{s}}}= & -\tau_{s}^{\tau_{s}}E_{s}\int_{\tau_{s}g(0)}^{\tau_{s}g(t)}\frac{exp(-h)}{h^{\tau_{s}}}dh\\
+= & -\tau_{s}^{\tau_{s}}E_{s}(\gamma(1-\tau_{s},\tau_{s}g(t))-\gamma(1-\tau_{s},\tau_{s}g(0)))
+\end{align*}
+
+\end_inset
+
+ where 
+\begin_inset Formula $\gamma(a.b)=\int_{0}^{b}exp(-t)t^{a-1}dt$
+\end_inset
+
+ which is also called the incomplete gamma integral.
+\end_layout
+
+\begin_layout Standard
+Also since g also follows exponential decay, 
+\begin_inset Formula $g(t)=g(0)e^{-t/\tau_{s}}$
+\end_inset
+
+ we have, 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $g(0)^{-\tau_{s}}exp(t-\tau_{s}g(0)e^{-t/\tau_{s}})V(t)=V(0)e^{-\tau_{s}g(0)}g(0)^{-\tau_{s}}-\tau_{s}^{\tau_{s}}E_{s}(\gamma(1-\tau_{s},\tau_{s}g(t))-\gamma(1-\tau_{s},\tau_{s}g(0)))$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+If we define 
+\begin_inset Formula $\rho(a,b)=e^{b}b^{-a}\gamma(a,b)$
+\end_inset
+
+, we can write
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\tau_{s}^{\tau_{s}}E_{s}(\gamma(1-\tau_{s},\tau_{s}g(0))= & \tau_{s}E_{s}g(0)\rho(1-\tau_{s},\tau_{s}g(0))e^{-\tau_{s}g(0)}g(0)^{-\tau_{s}}\\
+\tau_{s}^{\tau_{s}}E_{s}(\gamma(1-\tau_{s},\tau_{s}g(t))= & \tau_{s}E_{s}g(t)\rho(1-\tau_{s},\tau_{s}g(t))g(0)^{\tau_{s}}exp(t-\tau_{s}g(0)e^{-t/\tau_{s}})
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+So we get
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+e^{t-\tau_{s}g(t)}(V(t)+\tau_{s}E_{s}g(t)\rho(1-\tau_{s},\tau_{s}g(t)))=e^{t-\tau_{s}g(0)}(V(0)+\tau_{s}E_{s}g(0)\rho(1-\tau_{s},\tau_{s}g(0)))
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+From which we get,
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+V(t)=-\rho(1-\tau_{s},\tau_{s}g(t))\tau_{s}E_{s}g(t)+exp(\tau_{s}(g(t)-g(0))-t)(V(0)+\rho(1-\tau_{s},\tau_{s}g(0))\tau_{s}E_{s}g(0).
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+Appendix B
+\end_layout
+
+\begin_layout Subsection*
+Fortran code for VTNNS with time delay in synaptic conductance
+\end_layout
+
+\begin_layout Standard
+program VTNNS_with_time_delay
+\end_layout
+
+\begin_layout Standard
+use numerical
+\end_layout
+
+\begin_layout Standard
+implicit none
+\end_layout
+
+\begin_layout Standard
+integer ,parameter:: num=50
+\end_layout
+
+\begin_layout Standard
+real(8) , parameter :: V_th=20.0 , V_reset=14.0
+\end_layout
+
+\begin_layout Standard
+real(8),parameter:: time_bound= 1.0
+\end_layout
+
+\begin_layout Standard
+real(8) , parameter :: tau=20.0, tau_s=5.0/tau
+\end_layout
+
+\begin_layout Standard
+real(8),parameter:: E_plus = 74.0, E_minus= -6.0
+\end_layout
+
+\begin_layout Standard
+real(8),parameter:: weight_plus=1.2,weight_plus_plus=1.6, weight_minus=-1.19
+\end_layout
+
+\begin_layout Standard
+real(8),parameter:: adjuster=0.01
+\end_layout
+
+\begin_layout Standard
+!num is the number of neurons in neural network
+\end_layout
+
+\begin_layout Standard
+real(8):: neural_network(num,4),weight_matrix(num,num),firing_table(num)
+\end_layout
+
+\begin_layout Standard
+real(8):: random1,random2,dummy_zero,testing,testing_argument(4),h,dummy_time
+\end_layout
+
+\begin_layout Standard
+real(8):: next_fire_time,printing_array(num+1)
+\end_layout
+
+\begin_layout Standard
+integer:: l
+\end_layout
+
+\begin_layout Standard
+neural_network=0.0
+\end_layout
+
+\begin_layout Standard
+weight_matrix=0.0
+\end_layout
+
+\begin_layout Standard
+do l =1,num-1
+\end_layout
+
+\begin_layout Standard
+! weight_matrix(l,l+1)=weight_plus
+\end_layout
+
+\begin_layout Standard
+weight_matrix(1,l+1)=weight_plus
+\end_layout
+
+\begin_layout Standard
+! weight_matrix(l+1,1)= weight_plus
+\end_layout
+
+\begin_layout Standard
+end do
+\end_layout
+
+\begin_layout Standard
+do l =1,num
+\end_layout
+
+\begin_layout Standard
+call init_random_seed()
+\end_layout
+
+\begin_layout Standard
+!assigning a value between -75 and -53 V(0) for all neurons
+\end_layout
+
+\begin_layout Standard
+call random_number(random1)
+\end_layout
+
+\begin_layout Standard
+neural_network(l,1)= 16.0- 6.0*random1
+\end_layout
+
+\begin_layout Standard
+end do
+\end_layout
+
+\begin_layout Standard
+neural_network(1,1)= 15.0
+\end_layout
+
+\begin_layout Standard
+do l=1,num
+\end_layout
+
+\begin_layout Standard
+call init_random_seed()
+\end_layout
+
+\begin_layout Standard
+call random_number(random1)
+\end_layout
+
+\begin_layout Standard
+call random_number(random2)
+\end_layout
+
+\begin_layout Standard
+random1=0.3*random1
+\end_layout
+
+\begin_layout Standard
+random2=random2*0.018
+\end_layout
+
+\begin_layout Standard
+random2=0.0
+\end_layout
+
+\begin_layout Standard
+neural_network(l,2)= random1+random2
+\end_layout
+
+\begin_layout Standard
+neural_network(l,3)=(random1*E_plus+random2*E_minus)/(random1+random2)
+\end_layout
+
+\begin_layout Standard
+end do
+\end_layout
+
+\begin_layout Standard
+neural_network(1,2)=1.2
+\end_layout
+
+\begin_layout Standard
+neural_network(1,3)=74.0
+\end_layout
+
+\begin_layout Standard
+open (1,file="firing_table.dat")
+\end_layout
+
+\begin_layout Standard
+call firing_time_updater(neural_network,firing_table,dummy_zero,diff_central)
+\end_layout
+
+\begin_layout Standard
+testing_argument(1)=15.0
+\end_layout
+
+\begin_layout Standard
+testing_argument(2)=1.2
+\end_layout
+
+\begin_layout Standard
+testing_argument(3)=74.0
+\end_layout
+
+\begin_layout Standard
+testing_argument(4)= 0.15488245509844328
+\end_layout
+
+\begin_layout Standard
+next_fire_time=minval(firing_table)
+\end_layout
+
+\begin_layout Standard
+do while(next_fire_time<time_bound)
+\end_layout
+
+\begin_layout Standard
+printing_array=0.0
+\end_layout
+
+\begin_layout Standard
+do l =1,num
+\end_layout
+
+\begin_layout Standard
+if(firing_table(l)==next_fire_time) then
+\end_layout
+
+\begin_layout Standard
+write(3,*) "passed with time",next_fire_time
+\end_layout
+
+\begin_layout Standard
+write(1,*) 20.0* next_fire_time,l
+\end_layout
+
+\begin_layout Standard
+printing_array(1)= next_fire_time
+\end_layout
+
+\begin_layout Standard
+printing_array(l+1)=1.0
+\end_layout
+
+\begin_layout Standard
+write(2,*) printing_array
+\end_layout
+
+\begin_layout Standard
+call outgoing_updater(neural_network,l,next_fire_time)
+\end_layout
+
+\begin_layout Standard
+call incoming_updater(neural_network,l,next_fire_time,weight_matrix)
+\end_layout
+
+\begin_layout Standard
+end if
+\end_layout
+
+\begin_layout Standard
+end do
+\end_layout
+
+\begin_layout Standard
+call firing_time_updater(neural_network,firing_table,next_fire_time,diff_central
+)
+\end_layout
+
+\begin_layout Standard
+write(4,*) firing_table
+\end_layout
+
+\begin_layout Standard
+next_fire_time= minval(firing_table)
+\end_layout
+
+\begin_layout Standard
+end do
+\end_layout
+
+\begin_layout Standard
+close(1)
+\end_layout
+
+\begin_layout Standard
+call execute_command_line('gnuplot "gnucommand"')
+\end_layout
+
+\begin_layout Standard
+contains
+\end_layout
+
+\begin_layout Standard
+!—————————— ———- ———-
+\end_layout
+
+\begin_layout Standard
+!gives the value of g afer giving the initial g value and time
+\end_layout
+
+\begin_layout Standard
+function g_function(g_0,time)
+\end_layout
+
+\begin_layout Standard
+implicit none
+\end_layout
+
+\begin_layout Standard
+real(8):: g_0,time,g_function
+\end_layout
+
+\begin_layout Standard
+g_function = g_0* exp(-time/tau_s)
+\end_layout
+
+\begin_layout Standard
+end function g_function
+\end_layout
+
+\begin_layout Standard
+!———— ————————— —————-
+\end_layout
+
+\begin_layout Standard
+!gives the exact solution for voltage given the time and initial conditions
+\end_layout
+
+\begin_layout Standard
+function voltage_function(arg_array)
+\end_layout
+
+\begin_layout Standard
+!arg_array = (V_0,g_0,E_s,time)
+\end_layout
+
+\begin_layout Standard
+implicit none
+\end_layout
+
+\begin_layout Standard
+!gamma_1,gamma_2 refers to different version of gamma integral in equation
+\end_layout
+
+\begin_layout Standard
+!dummy_1 and dummy_2 refers to dummy var for the subroutine incog
+\end_layout
+
+\begin_layout Standard
+real(8) ::arg_array(4), voltage_function,g_t,gamma_1,gamma_2,dummy_1,dummy_2,a,b
+,c
+\end_layout
+
+\begin_layout Standard
+g_t = g_function(arg_array(2),arg_array(4))
+\end_layout
+
+\begin_layout Standard
+a = 1-tau_s
+\end_layout
+
+\begin_layout Standard
+b= tau_s*g_t
+\end_layout
+
+\begin_layout Standard
+c= tau_s*arg_array(2)
+\end_layout
+
+\begin_layout Standard
+call incog(a,b,gamma_1,dummy_1,dummy_2)
+\end_layout
+
+\begin_layout Standard
+call incog(a,c,gamma_2,dummy_1,dummy_2)
+\end_layout
+
+\begin_layout Standard
+gamma_1 = gamma_1*exp(b)*(b**(-a))
+\end_layout
+
+\begin_layout Standard
+gamma_2 = gamma_2*exp(c)*(c**(-a))
+\end_layout
+
+\begin_layout Standard
+voltage_function = (-tau_s*arg_array(3)*g_t*gamma_1) + exp(-arg_array(4)+
+ tau_s&
+\end_layout
+
+\begin_layout Standard
+*(g_t-arg_array(2)))*(arg_array(1)+tau_s*arg_array(3)*arg_array(2)*gamma_2)
+\end_layout
+
+\begin_layout Standard
+end function voltage_function
+\end_layout
+
+\begin_layout Standard
+!———– ——————- —————– —————–
+\end_layout
+
+\begin_layout Standard
+!special voltage function in which one of the gamma integral is given as
+ an argument
+\end_layout
+
+\begin_layout Standard
+function voltage_function_special(arg_array)
+\end_layout
+
+\begin_layout Standard
+! arg_array=(V_0,g_0,E_s,gamma,time)
+\end_layout
+
+\begin_layout Standard
+implicit none
+\end_layout
+
+\begin_layout Standard
+!gamma_1,gamma_2 refers to different version of gamma integral in equation
+\end_layout
+
+\begin_layout Standard
+!dummy_1 and dummy_2 refers to dummy var for the subroutine incog
+\end_layout
+
+\begin_layout Standard
+real(8) ::arg_array(5), voltage_function_special,V_0,g_0,E_s,time,g_t
+\end_layout
+
+\begin_layout Standard
+real(8) :: gamma,gamma_1,gamma_2,dummy_1,dummy_2,a,b,c
+\end_layout
+
+\begin_layout Standard
+g_t = g_function(arg_array(2),arg_array(5))
+\end_layout
+
+\begin_layout Standard
+a = 1-tau_s
+\end_layout
+
+\begin_layout Standard
+b= tau_s*g_t
+\end_layout
+
+\begin_layout Standard
+! c= tau_s*g_0
+\end_layout
+
+\begin_layout Standard
+call incog(a,b,gamma_1,dummy_1,dummy_2)
+\end_layout
+
+\begin_layout Standard
+! call incog(a,c,gamma_2,dummy_1,dummy_2)
+\end_layout
+
+\begin_layout Standard
+gamma_1 = gamma_1*exp(b)*(b**(-a))
+\end_layout
+
+\begin_layout Standard
+gamma_2=arg_array(4)
+\end_layout
+
+\begin_layout Standard
+!gamma_2 = gamma_2*exp(c)*(c**(-a))
+\end_layout
+
+\begin_layout Standard
+voltage_function_special = (-tau_s*arg_array(3)*g_t*gamma_1) + exp(-arg_array(5)
++ tau_s&
+\end_layout
+
+\begin_layout Standard
+*(g_t-arg_array(2)))*(arg_array(1)+tau_s*arg_array(3)*arg_array(2)*gamma_2)
+\end_layout
+
+\begin_layout Standard
+end function voltage_function_special
+\end_layout
+
+\begin_layout Standard
+!——- ————— ———— —————- ——-
+\end_layout
+
+\begin_layout Standard
+!subroutine to update the state of a neuron after it is fired.
+\end_layout
+
+\begin_layout Standard
+subroutine outgoing_updater(Neural_network,i,fire_time)
+\end_layout
+
+\begin_layout Standard
+implicit none
+\end_layout
+
+\begin_layout Standard
+!i refers to the index of the neuron which is going to be fired
+\end_layout
+
+\begin_layout Standard
+integer :: i
+\end_layout
+
+\begin_layout Standard
+real(8) :: Neural_network(num,4), fire_time
+\end_layout
+
+\begin_layout Standard
+neural_network(i,1) = V_reset
+\end_layout
+
+\begin_layout Standard
+neural_network(i,2)=neural_network(i,2) *&
+\end_layout
+
+\begin_layout Standard
+exp((neural_network(i,4)-fire_time)/tau_s)
+\end_layout
+
+\begin_layout Standard
+neural_network(i,4)= fire_time
+\end_layout
+
+\begin_layout Standard
+end subroutine outgoing_updater
+\end_layout
+
+\begin_layout Standard
+!——————- —————– ————————–
+\end_layout
+
+\begin_layout Standard
+!subroutine to update other neurons after one neuron fires.
+\end_layout
+
+\begin_layout Standard
+subroutine incoming_updater(neural_network,i,fire_time,weight_matrix)
+\end_layout
+
+\begin_layout Standard
+implicit none
+\end_layout
+
+\begin_layout Standard
+integer:: j,i
+\end_layout
+
+\begin_layout Standard
+real(8) :: Neural_network(num,4), fire_time,w_dummy,alpha,beta,weight_matrix(num
+,num)
+\end_layout
+
+\begin_layout Standard
+real(8):: arg_array(4)
+\end_layout
+
+\begin_layout Standard
+alpha= (E_plus - E_minus)/2.0
+\end_layout
+
+\begin_layout Standard
+beta= (E_plus + E_minus)/2.0
+\end_layout
+
+\begin_layout Standard
+do j = 1,num
+\end_layout
+
+\begin_layout Standard
+if (j .ne.
+ i) then
+\end_layout
+
+\begin_layout Standard
+arg_array(1:3)=neural_network(j,1:3)
+\end_layout
+
+\begin_layout Standard
+arg_array(4)=fire_time-neural_network(j,4)
+\end_layout
+
+\begin_layout Standard
+neural_network(j,1) =voltage_function(arg_array)
+\end_layout
+
+\begin_layout Standard
+neural_network(j,2)=neural_network(j,2) *&
+\end_layout
+
+\begin_layout Standard
+exp((neural_network(j,4)-fire_time)/tau_s)
+\end_layout
+
+\begin_layout Standard
+w_dummy = weight_matrix(i,j)
+\end_layout
+
+\begin_layout Standard
+neural_network(j,3) = (neural_network(j,2)*neural_network(j,3) + alpha*w_dummy
+ + beta*abs(w_dummy))/&
+\end_layout
+
+\begin_layout Standard
+(neural_network(j,2)+abs(w_dummy))
+\end_layout
+
+\begin_layout Standard
+neural_network(j,2)= neural_network(j,2) + abs(w_dummy)
+\end_layout
+
+\begin_layout Standard
+neural_network(j,4)= fire_time
+\end_layout
+
+\begin_layout Standard
+w_dummy=0.0
+\end_layout
+
+\begin_layout Standard
+end if
+\end_layout
+
+\begin_layout Standard
+end do
+\end_layout
+
+\begin_layout Standard
+end subroutine incoming_updater
+\end_layout
+
+\begin_layout Standard
+!————– ————– ————– —————-
+\end_layout
+
+\begin_layout Standard
+!to update the spike firing time table
+\end_layout
+
+\begin_layout Standard
+subroutine firing_time_updater(neural_network,firing_table,firing_time,diff_func
+tion)
+\end_layout
+
+\begin_layout Standard
+implicit none
+\end_layout
+
+\begin_layout Standard
+real(8),external:: diff_function
+\end_layout
+
+\begin_layout Standard
+!real(8),external::voltage_function
+\end_layout
+
+\begin_layout Standard
+!real(8) , external :: voltage_function_special
+\end_layout
+
+\begin_layout Standard
+real(8):: neural_network(num,4),firing_table(num),firing_time
+\end_layout
+
+\begin_layout Standard
+real(8)::dummy_voltage,dummy_time,guess, error,h,dummy_1,dummy_2,diff,arg_array(
+5),g_star
+\end_layout
+
+\begin_layout Standard
+real(8):: dummy_a,dummy_b,dummy_c,dummy_gamma_1,dummy_gamma_2,dummer_1,dummer_2,
+arg_array_2(4)
+\end_layout
+
+\begin_layout Standard
+real(8):: ar_arr(4),random_dummy
+\end_layout
+
+\begin_layout Standard
+integer::k,q
+\end_layout
+
+\begin_layout Standard
+do k=1,num
+\end_layout
+
+\begin_layout Standard
+firing_table(k)=1000000.0
+\end_layout
+
+\begin_layout Standard
+if(neural_network(k,3)>V_th) then
+\end_layout
+
+\begin_layout Standard
+g_star= V_th/(neural_network(k,3)-v_th)
+\end_layout
+
+\begin_layout Standard
+write(*,*) "g_star is", g_star,neural_network(k,2)
+\end_layout
+
+\begin_layout Standard
+if(neural_network(k,2)>g_star) then
+\end_layout
+
+\begin_layout Standard
+dummy_a = 1-tau_s
+\end_layout
+
+\begin_layout Standard
+dummy_b= tau_s*g_star
+\end_layout
+
+\begin_layout Standard
+dummy_c= tau_s*neural_network(k,2)
+\end_layout
+
+\begin_layout Standard
+call incog(dummy_a,dummy_b,dummy_gamma_1,dummer_1,dummer_2)
+\end_layout
+
+\begin_layout Standard
+call incog(dummy_a,dummy_c,dummy_gamma_2,dummer_1,dummer_2)
+\end_layout
+
+\begin_layout Standard
+dummy_gamma_1 = dummy_gamma_1*exp(dummy_b)*(dummy_b**(-dummy_a))
+\end_layout
+
+\begin_layout Standard
+dummy_gamma_2 =dummy_gamma_2*exp(dummy_c)*(dummy_c**(-dummy_a))
+\end_layout
+
+\begin_layout Standard
+dummy_voltage = (-tau_s*neural_network(k,3)*g_star*dummy_gamma_1) &
+\end_layout
+
+\begin_layout Standard
++((g_star/neural_network(k,2))**tau_s)* exp( tau_s&
+\end_layout
+
+\begin_layout Standard
+*(g_star-neural_network(k,2)))*(neural_network(k,1)&
+\end_layout
+
+\begin_layout Standard
++tau_s*neural_network(k,3)*neural_network(k,2)*dummy_gamma_2)
+\end_layout
+
+\begin_layout Standard
+if(dummy_voltage>V_th) then
+\end_layout
+
+\begin_layout Standard
+guess = 0.0
+\end_layout
+
+\begin_layout Standard
+arg_array_2(1:3) = neural_network(k,1:3)
+\end_layout
+
+\begin_layout Standard
+arg_array_2(4)=guess
+\end_layout
+
+\begin_layout Standard
+error=voltage_function(arg_array_2)-V_th
+\end_layout
+
+\begin_layout Standard
+q=0
+\end_layout
+
+\begin_layout Standard
+do while(abs(error)>0.001)
+\end_layout
+
+\begin_layout Standard
+if (q==20) then
+\end_layout
+
+\begin_layout Standard
+q= q+1
+\end_layout
+
+\begin_layout Standard
+arg_array(1:3)=neural_network(k,1:3)
+\end_layout
+
+\begin_layout Standard
+arg_array(4)=dummy_gamma_2
+\end_layout
+
+\begin_layout Standard
+arg_array(5)=guess
+\end_layout
+
+\begin_layout Standard
+h=0.0000001
+\end_layout
+
+\begin_layout Standard
+diff= diff_function(voltage_function_special,arg_array,5,h)
+\end_layout
+
+\begin_layout Standard
+random_dummy= error/diff
+\end_layout
+
+\begin_layout Standard
+if(random_dummy>0) then
+\end_layout
+
+\begin_layout Standard
+if(neural_network(k,1)>V_th) then 
+\end_layout
+
+\begin_layout Standard
+guess= adjuster
+\end_layout
+
+\begin_layout Standard
+exit
+\end_layout
+
+\begin_layout Standard
+else
+\end_layout
+
+\begin_layout Standard
+guess=100000.0
+\end_layout
+
+\begin_layout Standard
+exit
+\end_layout
+
+\begin_layout Standard
+end if
+\end_layout
+
+\begin_layout Standard
+end if
+\end_layout
+
+\begin_layout Standard
+guess = guess- error/diff
+\end_layout
+
+\begin_layout Standard
+arg_array(5)= guess
+\end_layout
+
+\begin_layout Standard
+error= voltage_function_special(arg_array)-V_th
+\end_layout
+
+\begin_layout Standard
+end do
+\end_layout
+
+\begin_layout Standard
+firing_table(k)=neural_network(k,4) + guess
+\end_layout
+
+\begin_layout Standard
+end if
+\end_layout
+
+\begin_layout Standard
+end if
+\end_layout
+
+\begin_layout Standard
+end if
+\end_layout
+
+\begin_layout Standard
+end do
+\end_layout
+
+\begin_layout Standard
+end subroutine firing_time_updater
+\end_layout
+
+\begin_layout Standard
+!———- ————— ———————— —————- ——–
+\end_layout
+
+\begin_layout Standard
+end program VTNNS_with_time_delay.
+\end_layout
+
+\end_body
+\end_document
