@@ -1,8 +1,22 @@
-# Variable Topology Neural Network Simulator (VTTNNS) 
+# Biological - Variable Topology Neural Network Simulator (VTNNS).
+Code archive of Variable Topology Neural Network Simulator (VTNNS) based on LIF model.  Original creation date Aug-2015.
 
-![gating_variable.png](attachment:gating_variable.png)
+------------------
+- Code repository for intership conducted under National Network for Mathematical and Computational Biology (NNMCB), during the summer of 2015.
+- All packages are written in Fortran 90 for faster computations.
+- All the packages used are written by the author, except gnuplot used for visualizaiton. 
+- For context of the simulations, please refer to `/.report.pdf` or `./presentation.pdf`.
 
 
-```python
 
-```
+![image](https://user-images.githubusercontent.com/35903705/88014266-8757eb00-caec-11ea-8892-4122e7e35371.png)   
+       &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;__Simulation of coupling of two neurons.__
+       
+## Author
+-----------
+Manu Jayadharan, Department of Mathematics at University of Pittsburgh.
+Original date of creation: Aug - 2015
+
+email: [manu.jayadharan@gmail.com](mailto:manu.jayadharan@gmail.com), [manu.jayadharan@pitt.edu](mailto:manu.jayadharan@pitt.edu)  
+[reserachgate link](https://www.researchgate.net/profile/Manu_Jayadharan)  
+[linkedin profile](https://www.linkedin.com/in/manu-jayadharan/)
