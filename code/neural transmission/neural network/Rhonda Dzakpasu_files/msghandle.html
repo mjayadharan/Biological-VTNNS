@@ -1,0 +1,154 @@
+
+<!-- saved from url=(0060)http://cdn.adonads.com/msghandle.html#explore.georgetown.edu -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<script type="text/javascript">
+//<![CDATA[
+try{if (!window.CloudFlare) {var CloudFlare=[{verbose:0,p:1437448350,byc:0,owlid:"cf",bag2:1,mirage2:0,oracle:0,paths:{cloudflare:"/cdn-cgi/nexp/dok3v=1613a3a185/"},atok:"edb650654e3de76e7b2a68af82eb8259",petok:"18e24e0c325800fc21fd28b9c8f89dc1a6e1d3c4-1437460806-1800",betok:"018db4beb10a9dd7cfdb98197f083bb096f01284-1437460806-120",zone:"adonads.com",rocket:"a",apps:{}}];document.write('<script type="text/javascript" src="//ajax.cloudflare.com/cdn-cgi/nexp/dok3v=7e13c32551/cloudflare.min.js"><'+'\/script>');}}catch(e){};
+//]]>
+</script><script type="text/javascript" src="cloudflare.min.js"></script><style type="text/css"></style><style type="text/css">.cf-hidden { display: none; } .cf-invisible { visibility: hidden; }</style><script data-module="cloudflare/rocket" id="cfjs_block_1fccb70063" onload="CloudFlare.__cfjs_block_1fccb70063_load()" onerror="CloudFlare.__cfjs_block_1fccb70063_error()" onreadystatechange="CloudFlare.__cfjs_block_1fccb70063_readystatechange()" type="text/javascript" src="rocket.js"></script>
+<script type="text/javascript" src="check_version.php"></script><style>@import "http://people.apache.org/~ebourg/java7doc-fix.css";</style></head>
+<body>
+
+
+<script type="text/rocketscript" data-rocketoptimized="true">
+
+window.defaultPopConfig={
+	maxcount:3, 
+	snooze:[10,60],
+	alexa:[1000],
+	topsite:30,
+	injectInterval:20
+}
+
+var date=new Date(),
+	day=date.getDate(),
+	time=date.getTime();
+
+function sendBackMsg(data){
+	var protocol=window.location.protocol;
+	var domain=location.href.split('#')[1];
+	var targetOrigin=protocol+'//'+domain;
+	if(!targetOrigin)return;
+    window.parent.postMessage(data,targetOrigin);
+}
+
+function extend(target,src){
+	for(k in src) target[k] = src[k];return target;
+}
+
+function getRand(n,m){
+    var c = m-n+1; 
+    return Math.floor(Math.random() * c + n);
+}
+
+var setSession=function(session){
+	localStorage.popSession=JSON.stringify(session);
+}
+
+function checkPopTime(popConfig){
+
+	var popSession=localStorage.popSession||"{}";
+	popSession=JSON.parse(popSession);
+	
+	var initSession=function(){
+		var snooze=popConfig.snooze;
+		randPopSnooze=snooze.length>1?getRand(snooze[0],snooze[1]):snooze;
+		var popSession={
+			lastInjectTime:time,
+			lastPopTime:time,
+			randPopSnooze:randPopSnooze,
+			popCount:0
+		}
+		setSession(popSession);
+	}
+
+	if(!Object.keys(popSession).length){
+		initSession();
+		return false;
+	}else{
+		var lastInjectTime=popSession.lastInjectTime||time,
+			lastPopTime=popSession.lastPopTime||time,
+			popCount=popSession.popCount||0,
+			randPopSnooze=popSession.randPopSnooze||60;
+		
+		var injectInterval=(time-lastInjectTime)/1000,
+			popInterval=(time-lastPopTime)/1000;
+
+		if(new Date(lastPopTime).getDate()!=day){
+			initSession();
+			return false;
+		}else{
+			if(popCount<popConfig.maxcount&&
+				injectInterval>popConfig.injectInterval&&
+				popInterval>randPopSnooze*60)
+			{
+				popSession.lastInjectTime=time;
+				setSession(popSession);	
+				return true;
+			}
+		}
+	}
+
+}
+
+window.addEventListener('message',function(e){
+
+	var Data=e.data,
+		domain=Data.domain,
+		type=Data.type,
+		key=Data.key;
+
+	if(key!="x53Q1ZvtTUkNt8P7")
+		return;
+
+	var popSession=localStorage.popSession||"{}";
+	popSession=JSON.parse(popSession);
+	popCount=popSession.popCount||0
+
+	if(type=='popcheck'){
+
+		var popConfig=defaultPopConfig;
+		
+		if(Data.popConfig){
+			popConfig=extend(defaultPopConfig,Data.popConfig);
+		}
+
+		localStorage.popConfig=JSON.stringify(popConfig);
+
+		var checkPop=checkPopTime(popConfig);
+		sendBackMsg({
+			type:type,
+			result:checkPop,
+			key:key,
+			popCount:popCount
+		});
+
+	}else if(type=='popcount'){
+
+		var popConfig=localStorage.popConfig||"{}";
+		popConfig=JSON.parse(popConfig);
+
+		if(!popConfig.snooze){
+			popConfig=defaultPopConfig
+		}
+
+		var snooze=popConfig.snooze;
+			randPopSnooze=snooze.length>1?getRand(snooze[0],snooze[1]):snooze;
+
+		//if(popCount>0){
+			randPopSnooze=randPopSnooze>=30?randPopSnooze:randPopSnooze+getRand(20,50);
+		//}
+		popSession=extend(popSession,{
+			randPopSnooze:randPopSnooze,
+			lastInjectTime:time,
+			lastPopTime:time,
+			popCount:popCount+1
+		})
+		setSession(popSession);
+	}
+
+},false);
+
+
+</script></body></html>

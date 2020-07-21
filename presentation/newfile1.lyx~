@@ -1,0 +1,1171 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass beamer
+\begin_preamble
+\usetheme{Warsaw}
+% or ...
+
+\setbeamercovered{transparent}
+% or whatever (possibly just delete it)
+\end_preamble
+\use_default_options false
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman times
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 2
+\use_package amssymb 2
+\use_package cancel 0
+\use_package esint 0
+\use_package mathdots 1
+\use_package mathtools 0
+\use_package mhchem 1
+\use_package stackrel 0
+\use_package stmaryrd 0
+\use_package undertilde 0
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 2
+\tocdepth 2
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+This file is a solution template for:
+\end_layout
+
+\begin_layout Itemize
+Talk at a conference/colloquium.
+ 
+\end_layout
+
+\begin_layout Itemize
+Talk length is about 20min.
+ 
+\end_layout
+
+\begin_layout Itemize
+Style is ornate.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+Copyright 2004 by Till Tantau <tantau@users.sourceforge.net>.
+ 
+\end_layout
+
+\begin_layout Plain Layout
+In principle, this file can be redistributed and/or modified under the terms
+ of the GNU Public License, version 2.
+ However, this file is supposed to be a template to be modified for your
+ own needs.
+ For this reason, if you use this file as a template and not specifically
+ distribute it as part of a another package/program, the author grants the
+ extra permission to freely copy and modify this file as you see fit and
+ even to delete this copyright notice.
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Title
+Neural Signal Processing
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+Neural Signal Processing
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+optional, use only with long paper titles
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Author
+Manu.Jayadharan 
+\end_layout
+
+\begin_layout Institute
+\begin_inset Flex InstituteMark
+status collapsed
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+Department of Mathematics
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Flex InstituteMark
+status collapsed
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+IISER Mohali
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Date
+NNMCB Internship 2015 Progress
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+If you have a file called "institution-logo-filename.xxx", where xxx is a
+ graphic format that can be processed by latex or pdflatex, resp., then you
+ can add a logo by uncommenting the following:
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+%
+\backslash
+pgfdeclareimage[height=0.5cm]{institution-logo}{institution-logo-filename}
+\end_layout
+
+\begin_layout Plain Layout
+
+%
+\backslash
+logo{
+\backslash
+pgfuseimage{institution-logo}}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+The following causes the table of contents to be shown at the beginning
+ of every subsection.
+ Delete this, if you do not want it.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+AtBeginSubsection[]{%
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+frame<beamer>{ 
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+frametitle{Outline}   
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+tableofcontents[currentsection,currentsubsection] 
+\end_layout
+
+\begin_layout Plain Layout
+
+  }
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+If you wish to uncover everything in a step-wise fashion, uncomment the
+ following command:
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+%
+\backslash
+beamerdefaultoverlayspecification{<+->}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Outline
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Structuring a talk is a difficult task and the following structure may not
+ be suitable.
+ Here are some rules that apply for this solution: 
+\end_layout
+
+\begin_layout Itemize
+Exactly two or three sections (other than the summary).
+ 
+\end_layout
+
+\begin_layout Itemize
+At *most* three subsections per section.
+ 
+\end_layout
+
+\begin_layout Itemize
+Talk about 30s to 2min per frame.
+ So there should be between about 15 and 30 frames, all told.
+\end_layout
+
+\begin_layout Itemize
+A conference audience is likely to know very little of what you are going
+ to talk about.
+ So *simplify*! 
+\end_layout
+
+\begin_layout Itemize
+In a 20min talk, getting the main ideas across is hard enough.
+ Leave out details, even if it means being less precise than you think necessary.
+ 
+\end_layout
+
+\begin_layout Itemize
+If you omit details that are vital to the proof/implementation, just say
+ so once.
+ Everybody will be happy with that.
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Section
+Motivation
+\end_layout
+
+\begin_layout Subsection
+What is neural Signal Processing
+\end_layout
+
+\begin_layout Frame
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Neurons can be can be considered as the most fundamental and core unit of
+ the nervous system
+\end_layout
+
+\begin_layout Itemize
+They are electrically excitable cells which helps in the propogation of
+ information through electrical and chemical interactions within an organism
+\end_layout
+
+\begin_layout Itemize
+Neurons can be sensory, motor or interconnecting
+\end_layout
+
+\begin_layout Itemize
+Neurons interconnect to form neural network
+\end_layout
+
+\begin_layout Itemize
+The sole purpose of neural signal processing is to understand how information
+ is represented, transmitted and stored in the nervous system and develop
+ the mechanism to record and interpret these signals
+\end_layout
+
+\end_deeper
+\begin_layout Subsection
+Brain and Neuron Structure
+\end_layout
+
+\begin_layout Frame
+Humman brain consists of approximately 10 billion neurons
+\begin_inset Graphics
+	filename requirements/images.jpg
+	scale 50
+	rotateOrigin centerBottom
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Separator
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Structure of Neuron
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Graphics
+	filename requirements/neuron_structure.jpg
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Subsection
+Membrane Potential and Action Potential
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Membrane Potential
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Neurons usually maintain a difference in electric potential across its cell
+ membrane
+\end_layout
+
+\begin_layout Itemize
+Unequal distribution of charged ions(Na+,K+,Ca2+, cl- etc) accounts for
+ this membrane potential difference
+\end_layout
+
+\begin_layout Itemize
+Cell membrane has selectively permeable ion channels which facilitates the
+ movement of corrensponding ions
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+V_{m}=V_{in}-V_{out}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Separator
+
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Action Potential
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+signals are processed across an excitable neuron in the form of propogating
+ spikes or action potential.
+\end_layout
+
+\begin_layout Itemize
+A slight decrease in membrane potential makes membrane more permeable to
+ Na+ than K+, and a positive feedback loop facilitates further depolarization
+ to form a sharp peak in the voltage across the membrane.
+\end_layout
+
+\begin_layout Itemize
+Action potential is an all or nothing event.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Graphics
+	filename requirements/action_potential.jpg
+	scale 30
+	rotateOrigin rightBottom
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Section
+Hodgkin Huxley Model
+\end_layout
+
+\begin_layout Subsection
+About the model
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+H & H model 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+The Hodgkin-Huxley Model is a mathematical model for the initiation and
+ propogation of action potential across a neurons based on the dynamic behaviour
+ of the conductance of different ions across the membrane
+\end_layout
+
+\begin_layout Itemize
+It is a set of differential equations which is mostly derived from emperical
+ data from different set of Voltage clamp experiments conducted on squid
+ giant axon.
+\end_layout
+
+\begin_layout Itemize
+Alan Lloyd Hodgkin and Andrew Huxley received the Nobel Prize in phhysiology
+ or Medicine for the same
+\end_layout
+
+\end_deeper
+\begin_layout Frame
+
+\end_layout
+
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Differential Equations 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Graphics
+	filename pasted1.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Modelling of gating variables
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Graphics
+	filename pasted2.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Subsection
+Simulation of the Model
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Simulation softwares and strategies
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Lot of open sourced and commercial advanced softwares are available for
+ the simulation and visualisation of the Model none of which is being being
+ for my simulations
+\end_layout
+
+\begin_layout Itemize
+All codes are written using Fortran95 and all the packages and modules are
+ self written.
+\end_layout
+
+\begin_layout Itemize
+Simple Euler method is invoked for solving the set of coupled differential
+ equations which is later improved using runge-kutta of order 4
+\end_layout
+
+\begin_layout Itemize
+Facility for making an animation of plotting of the simulated data is incorporat
+d into the code with the help of gnu plot and ffmpeg.
+\end_layout
+
+\begin_layout Itemize
+The complete code and animations are available at https://www.dropbox.com/sh/7bd3h
+ueoui1kcfq/AAB2iR21nXP1owC
+\begin_inset Newline newline
+\end_inset
+
+tnhOmUf65a?dl=0
+\end_layout
+
+\begin_layout Separator
+
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Simulation with current 0 and 4mA resp
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Graphics
+	filename /home/raven/Dropbox/internship for NNMCB/Simulations/hh neuron mode/s_videos/current=0.png
+	scale 35
+	rotateOrigin leftTop
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename /home/raven/Dropbox/internship for NNMCB/Simulations/hh neuron mode/s_videos/currnet=4.0.png
+	scale 35
+	rotateOrigin rightTop
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Simulation with current 50mA and 100mA resp
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Frame
+\begin_inset Graphics
+	filename /home/raven/Dropbox/internship for NNMCB/Simulations/hh neuron mode/s_videos/current=50.png
+	scale 35
+	rotateOrigin leftTop
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename /home/raven/Dropbox/internship for NNMCB/Simulations/hh neuron mode/s_videos/current=100.png
+	scale 35
+	rotateOrigin rightTop
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Neuron Coupling
+\end_layout
+
+\begin_layout Subsection
+LIF(leaky integrate and fire) model
+\end_layout
+
+\begin_layout Frame
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+LIF model is a comparitively simple model in which the ionic conductances
+ are not explicitley incorporated
+\end_layout
+
+\begin_layout Itemize
+It is based on a simple RC circuit
+\end_layout
+
+\begin_layout Itemize
+instead of modelling the spikes internally, in this model the spikes are
+ artificially introduced when the membrane potential reaches a threshold
+ votlage 
+\begin_inset Formula $V_{th}$
+\end_inset
+
+ and resetting 
+\begin_inset Formula $V_{m}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+The basic equation of an LIF model can be given by 
+\begin_inset Graphics
+	filename pasted6.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Separator
+
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Modelling the coupling
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+The coupling between two neurons is modelled by incorporating an ohmic conductan
+ce between two neurons into the LIF model to get the following set of differenti
+al equations 
+\begin_inset Graphics
+	filename pasted5.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+A completely analytic solution for this set of equations can be done with
+ the reduction of order using theory of weakly coupled oscillators.
+\end_layout
+
+\begin_layout Separator
+
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Subsection
+Simulations
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Software used for Simulation
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+While analytic solution can be derived, numerical solution can be derived
+ from the coupled differential equations to get an insight of the problem.
+\end_layout
+
+\begin_layout Itemize
+Again all codes are written using Fortran95 and all the packages and modules
+ are self written.
+\end_layout
+
+\begin_layout Itemize
+Runge-kutta of order 4 is invoked for solving the set of coupled differential
+ equations.
+\end_layout
+
+\begin_layout Itemize
+Facility for making an animation of plotting of the simulated data is incorporat
+d into the code with the help of gnu plot and ffmpeg.
+\end_layout
+
+\begin_layout Itemize
+The complete code and animations are available at https://www.dropbox.com/sh/qs4f3
+on3oo1fcvz/AAAu5XrPb
+\begin_inset Newline newline
+\end_inset
+
+o_nFdw3pGyEBUDea?dl=0
+\end_layout
+
+\begin_layout Separator
+
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Simulations with weak and Strong applied current
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Graphics
+	filename /home/raven/Dropbox/internship for NNMCB/Simulations/neuron coupling/I = 1.12
+	scale 35
+	rotateOrigin leftTop
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename /home/raven/Dropbox/internship for NNMCB/Simulations/neuron coupling/I = 2.0
+	scale 35
+	rotateOrigin rightBottom
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Section
+Neural Network and Further Plans
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Neural Network
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+The complexity of Neural Networks arises not from the specialisation of
+ neurons, but from their topology and nature of interconnection.
+\end_layout
+
+\begin_layout Itemize
+Understanding how the topology of neural network affect signal propogation
+ seems to be a very interesting filed of study as it might give some insight
+ into how the same kind of action potential can be used to propogate complex
+ iformation from the brain.
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Further Plan
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Looking forward to design a network of many neurons using LIF model.
+\end_layout
+
+\begin_layout Itemize
+Both numerical(time driven) and exact solutions(event driven) simulations
+ can be done.
+\end_layout
+
+\begin_layout Itemize
+Looking forward to do the event driven simulation of the network in which
+ each neuron in the network is updated when there is an incoming spike.
+\end_layout
+
+\begin_layout Itemize
+synaptic connections can be defined in terms of connectivity matrices.
+\end_layout
+
+\begin_layout Itemize
+for the starting, identical synaptic and membrane time constants will be
+ assumed for all neurons in the network which later might be modified to
+ give different or even variable time constants.
+\end_layout
+
+\begin_layout Separator
+
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Sketch for simulations
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+To start with, a predetermined topology will be assigned to a network consisting
+ of N neurons.
+\end_layout
+
+\begin_layout Itemize
+Various tests for spiking are decided to avoid unnecessary calculations
+ of the spike time.
+\end_layout
+
+\begin_layout Itemize
+spike times will be calculated using Netwton raphson method.
+\end_layout
+
+\begin_layout Itemize
+A table of spike times will be created and the neurons are allowed to fire
+ accordingly and updating the list after each firing.
+\end_layout
+
+\begin_layout Itemize
+At the end of the simulation table of data of the spikes and their timing
+ for different neurons will be recorded.
+\end_layout
+
+\begin_layout Itemize
+These data can be used to study the effect of topology on the synaptic transmiss
+ion.
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-1"
+
+\end_inset
+
+The Effects of Potassium Currents on the Synchronization of Electrically
+ Coupled Neural Oscillators By Colin Baker Middleton 
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-2"
+
+\end_inset
+
+Exact Simulation of Integrate-and-Fire Models with Synaptic Conductances,
+ Romain Brette 
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-3"
+
+\end_inset
+
+Lecture presentations of Dr.Caleb Kemere, Rice university
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-5"
+
+\end_inset
+
+Lecture notes on Hodgkin Huxley model by Dr.Stephen coombes, university of
+ Nottingham
+\end_layout
+
+\begin_layout Section*
+\start_of_appendix
+
+\end_layout
+
+\end_body
+\end_document
