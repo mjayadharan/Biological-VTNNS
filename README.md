@@ -19,7 +19,7 @@ Manu Jayadharan, Department of Mathematics at University of Pittsburgh.
 Original date of creation: Aug - 2015
 
 email: [manu.jayadharan@gmail.com](mailto:manu.jayadharan@gmail.com), [manu.jayadharan@pitt.edu](mailto:manu.jayadharan@pitt.edu)  
-[reserachgate link](https://www.researchgate.net/profile/Manu_Jayadharan)  
+[researchgate link](https://www.researchgate.net/profile/Manu_Jayadharan)  
 [linkedin profile](https://www.linkedin.com/in/manu-jayadharan/)
 
 ## Collaborator
